@@ -14,6 +14,24 @@ const FormAlterReviews = () => {
 
     const { push, query } = useRouter()
 
+    const [usuarios, setUsuarios] = useState([])
+    const [jogos, setJogos] = useState([])
+
+    useEffect(() => {
+        getAll()
+    }, [])
+
+    function getAll() {
+
+        axios.get('/api/usuarios').then(resultado => {
+            setUsuarios(resultado.data)
+
+        })
+        axios.get('/api/jogos').then(resultado => {
+            setJogos(resultado.data)
+
+        })
+    }
     interface FormValues {
         usuario: string
         jogo: string
@@ -71,23 +89,35 @@ const FormAlterReviews = () => {
                         <Form className='text-white font-bold'>
                             <Form.Group className="mb-3" controlId="Usuario">
                                 <Form.Label>Usuario</Form.Label>
-                                <Form.Control type="text" placeholder="Usuario" {...register('usuario', gameValidator.reviews.usuario)} />
-                                {
-                                    errors.usuario &&
-                                    <small className='text-red-700'>{errors.usuario.message}</small>
-                                }
+                                <Form.Select placeholder="Usuario" {...register('usuario', gameValidator.reviews.usuario)}>
+                                    {
+                                        errors.usuario &&
+                                        <small className='text-red-700'>{errors.usuario.message}</small>
+                                    }
+                                    <option value="nome">Selecione</option>
+                                    {usuarios.map((item: any) => (
+                                        <option key={item.id} value={item.nome}>{item.nome}</option>
+
+                                    ))}
+                                </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Jogo">
                                 <Form.Label>Jogo</Form.Label>
-                                <Form.Control type="text" placeholder="Jogo" {...register('jogo', gameValidator.reviews.jogo)} />
-                                {
-                                    errors.jogo &&
-                                    <small className='text-red-700'>{errors.jogo.message}</small>
-                                }
+                                <Form.Select placeholder="Jogo" {...register('jogo', gameValidator.reviews.jogo)}>
+                                    {
+                                        errors.jogo &&
+                                        <small className='text-red-700'>{errors.jogo.message}</small>
+                                    }
+                                    <option value="titulo">Selecione o Jogo</option>
+                                    {jogos.map((item: any) => (
+                                        <option key={item.id} value={item.titulo}>{item.titulo}</option>
+
+                                    ))}
+                                </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Nota">
                                 <Form.Label>Nota</Form.Label>
-                                <Form.Control type="number" placeholder="de 0 a 99" {...register('nota', gameValidator.reviews.nota)} />
+                                <Form.Control type="number" placeholder="de 0 a 99" mask="99" {...register('nota', gameValidator.reviews.nota)} onChange={MaskName} />
                                 {
                                     errors.nota &&
                                     <small className='text-red-700'>{errors.nota.message}</small>
@@ -103,7 +133,7 @@ const FormAlterReviews = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Data">
                                 <Form.Label>Data</Form.Label>
-                                <Form.Control type="date" placeholder="AAAA/MM/DD" mask="9999/99/99" {...register('data', gameValidator.reviews.data)} onChange={MaskName} />
+                                <Form.Control type="date" placeholder="AAAA/MM/DD" {...register('data', gameValidator.reviews.data)} />
                                 {
                                     errors.data &&
                                     <small className='text-red-700'>{errors.data.message}</small>

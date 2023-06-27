@@ -14,6 +14,24 @@ const Formulario = () => {
 
     const { push } = useRouter()
 
+    const [usuarios, setUsuarios] = useState([])
+    const [jogos, setJogos] = useState([])
+
+    useEffect(() => {
+        getAll()
+    }, [])
+
+    function getAll() {
+
+        axios.get('/api/usuarios').then(resultado => {
+            setUsuarios(resultado.data)
+
+        })
+        axios.get('/api/jogos').then(resultado => {
+            setJogos(resultado.data)
+
+        })
+    }
     interface FormValues {
         usuario: string
         jogo: string
@@ -54,66 +72,78 @@ const Formulario = () => {
                         <Form className='text-white font-bold'>
                             <Form.Group className="mb-3" controlId="Usuario">
                                 <Form.Label>Usuario</Form.Label>
-                                <Form.Control type="text" placeholder="Usuario" {...register('usuario', gameValidator.reviews.usuario)} />
-                                {
-                                    errors.usuario &&
-                                    <small className='text-red-700'>{errors.usuario.message}</small>
-                                }
+                                <Form.Select placeholder="Usuario" {...register('usuario', gameValidator.reviews.usuario)}>
+                                    {
+                                        errors.usuario &&
+                                        <small className='text-red-700'>{errors.usuario.message}</small>
+                                    }
+                                    <option value="nome">Selecione</option>
+                                    {usuarios.map((item: any) => (
+                                        <option key={item.id} value={item.nome}>{item.nome}</option>
+
+                                    ))}
+                                </Form.Select>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Jogo">
                                 <Form.Label>Jogo</Form.Label>
-                                <Form.Control type="text" placeholder="Jogo" {...register('jogo', gameValidator.reviews.jogo)} />
+                                <Form.Select placeholder="Jogo" {...register('jogo', gameValidator.reviews.jogo)}>
                                 {
                                     errors.jogo &&
                                     <small className='text-red-700'>{errors.jogo.message}</small>
                                 }
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="Nota">
-                                <Form.Label>Nota</Form.Label>
-                                <Form.Control type="number" placeholder="de 0 a 99" mask="99" {...register('nota', gameValidator.reviews.nota)} onChange={MaskName} />
-                                {
-                                    errors.nota &&
-                                    <small className='text-red-700'>{errors.nota.message}</small>
-                                }
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="Comentario">
-                                <Form.Label>Comentario</Form.Label>
-                                <Form.Control as="textarea" rows={3} type="text" placeholder="Comentario" {...register('comentario', gameValidator.reviews.comentario)} />
-                                {
-                                    errors.comentario &&
-                                    <small className='text-red-700'>{errors.comentario.message}</small>
-                                }
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="Data">
-                                <Form.Label>Data</Form.Label>
-                                <Form.Control type="date" placeholder="AAAA/MM/DD" {...register('data', gameValidator.reviews.data)}/>
-                                {
-                                    errors.data &&
-                                    <small className='text-red-700'>{errors.data.message}</small>
-                                }
-                            </Form.Group>
+                                <option value="titulo">Selecione o Jogo</option>
+                                {jogos.map((item: any) => (
+                                    <option key={item.id} value={item.titulo}>{item.titulo}</option>
 
-                            <div className='flex gap-3 justify-center pb-5'>
-                                <Button variant="primary" onClick={handleSubmit(salvar)}>
-                                    <div className='flex gap-2'><AiOutlineCheck />
-                                        Salvar
-                                    </div>
-                                </Button>
+                                ))}
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="Nota">
+                            <Form.Label>Nota</Form.Label>
+                            <Form.Control type="number" placeholder="de 0 a 99" mask="99" {...register('nota', gameValidator.reviews.nota)} onChange={MaskName} />
+                            {
+                                errors.nota &&
+                                <small className='text-red-700'>{errors.nota.message}</small>
+                            }
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="Comentario">
+                            <Form.Label>Comentario</Form.Label>
+                            <Form.Control as="textarea" rows={3} type="text" placeholder="Comentario" {...register('comentario', gameValidator.reviews.comentario)} />
+                            {
+                                errors.comentario &&
+                                <small className='text-red-700'>{errors.comentario.message}</small>
+                            }
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="Data">
+                            <Form.Label>Data</Form.Label>
+                            <Form.Control type="date" placeholder="AAAA/MM/DD" {...register('data', gameValidator.reviews.data)} />
+                            {
+                                errors.data &&
+                                <small className='text-red-700'>{errors.data.message}</small>
+                            }
+                        </Form.Group>
 
-                                <Link href={'/reviews'} className='btn btn-primary text-white'>
-                                    <div className='flex gap-2'>
-                                        <AiOutlineArrowLeft />
-                                        Voltar
-                                    </div>
-                                </Link>
-                            </div>
+                        <div className='flex gap-3 justify-center pb-5'>
+                            <Button variant="primary" onClick={handleSubmit(salvar)}>
+                                <div className='flex gap-2'><AiOutlineCheck />
+                                    Salvar
+                                </div>
+                            </Button>
 
-                        </Form>
+                            <Link href={'/reviews'} className='btn btn-primary text-white'>
+                                <div className='flex gap-2'>
+                                    <AiOutlineArrowLeft />
+                                    Voltar
+                                </div>
+                            </Link>
+                        </div>
 
-                    </Col>
+                    </Form>
 
-                </Row>
-            </div>
+                </Col>
+
+            </Row>
+        </div >
             <Footer />
         </>
     )
