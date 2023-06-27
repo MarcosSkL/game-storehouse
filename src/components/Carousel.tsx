@@ -44,7 +44,7 @@ const Carousel = () => {
                 </ul>
             </div>
         ),
-        customPaging: (i: any) => <div className='bgcolor w-2 h-2 mx-0 bg-[#ffffff80] rounded-full '></div>,
+        customPaging: (i: any) => <div className='bgcolor w-3 h-3 mx-0 bg-[#ffffff80] rounded-full '></div>,
     };
     return (
         <div className="p-4">

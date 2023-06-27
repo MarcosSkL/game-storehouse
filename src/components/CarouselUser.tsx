@@ -4,10 +4,10 @@ import Slider from "react-slick";
 import Image from "next/image";
 import Link from "next/link";
 
-const CarouselSmall = () => {
+const CarouselUser = () => {
 
 
-    const [jogos, setJogos] = useState([]);
+    const [usuarios, setUsuarios] = useState([]);
 
 
     useEffect(() => {
@@ -15,8 +15,8 @@ const CarouselSmall = () => {
     }, []);
 
     function getAll() {
-        axios.get("/api/jogos").then((resultado) => {
-            setJogos(resultado.data);
+        axios.get("/api/usuarios").then((resultado) => {
+            setUsuarios(resultado.data);
         });
     }
 
@@ -32,12 +32,12 @@ const CarouselSmall = () => {
     };
     return (
         <div className="p-4">
-            <h2 className="text-white text-2xl font-bold">Jogos em Alta</h2>
+            <h2 className="text-white text-2xl font-bold">Membros da Pagina</h2>
             <Slider {...settings}>
-                {jogos.map((item: any) => (
+                {usuarios.map((item: any) => (
                     <div key={item.id} className="p-2">
-                        <Link href={'jogos/games/' + item.id}>
-                        <Image priority src={item.capa} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-lg" />
+                        <Link href={'usuarios/games/' + item.id}>
+                        <Image priority src={item.foto} width={1920} height={1200} alt={"Foto " + item.nome} className="rounded-lg shadow-lg" />
                         </Link>
                     </div>
                 ))}
@@ -46,4 +46,4 @@ const CarouselSmall = () => {
     );
 
 }
-export default CarouselSmall
+export default CarouselUser

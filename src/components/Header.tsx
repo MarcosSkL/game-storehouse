@@ -23,7 +23,7 @@ const Header = () => {
                     <IoMenu className='h-14 w-12 cursor-pointer text-white' onClick={handleShow} />
                     <Offcanvas show={show} onHide={handleClose}>
                         <Offcanvas.Header closeButton className='bg-slate-800'>
-                            <Offcanvas.Title><p className='no-underline text-white'>Menu</p></Offcanvas.Title>
+                            <Offcanvas.Title><p className='no-underline text-white'>Editar Campos</p></Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body className='bg-gray-700'>
                             <p><Link href='/usuarios' className='no-underline text-lg font-semibold font-serif text-slate-200 text-current hover:text-gray-400'>Usuários</Link></p>
