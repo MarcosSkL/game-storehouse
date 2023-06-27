@@ -42,6 +42,7 @@ const Formulario = () => {
         genero: string
         sinopse: string
         capa: string
+        background: string
     }
 
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormValues>();
@@ -136,6 +137,14 @@ const Formulario = () => {
                                 {
                                     errors.capa &&
                                     <small className='text-red-700'>{errors.capa.message}</small>
+                                }
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="Background">
+                                <Form.Label>Background</Form.Label>
+                                <Form.Control type="text" placeholder="URL: https://" {...register('background', gameValidator.jogos.background)} />
+                                {
+                                    errors.background &&
+                                    <small className='text-red-700'>{errors.background.message}</small>
                                 }
                             </Form.Group>
 

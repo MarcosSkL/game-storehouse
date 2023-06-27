@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { Component, useEffect, useState } from "react";
 import Slider from "react-slick";
-import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,32 +20,17 @@ const Carousel = () => {
         });
     }
 
-    function SampleNextArrow(props: any) {
-        const { className, style, onClick } = props;
-        return (
-            <div className={`${className} before:content-none left-[22px] z-[11]`} style={{ ...style, display: 'block' }} onClick={onClick}>
-                <SlArrowRight className='hidden group-hover:block w-6 h-6 text-white' />
-            </div>
-        )
-    }
-
-    function SamplePrevArrow(props: any) {
-        const { className, style, onClick } = props;
-        return (
-            <div className={`${className} before:content-none left-[22px] z-[11]`} style={{ ...style, display: 'block' }} onClick={onClick}>
-                <SlArrowLeft className='hidden group-hover:block w-6 h-6 text-white' />
-            </div>
-        );
-    }
-
+    
     const settings = {
+        className: "center",
+        centerPadding: "100px",
+        centerMode: true,
         dots: true,
         infinite: true,
         speed: 800,
         slidesToShow: 1,
         slidesToScroll: 1,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+      
         appendDots: (dots: any) => (
             <div
                 style={{
@@ -63,12 +47,12 @@ const Carousel = () => {
         customPaging: (i: any) => <div className='bgcolor w-2 h-2 mx-0 bg-[#ffffff80] rounded-full '></div>,
     };
     return (
-        <div className="bg-gradient-to-r from-sky-400 to-blue-950 p-4">
-            <h2 className="text-white text-2xl font-bold">Center Mode</h2>
+        <div className="p-4">
+           
             <Slider {...settings}>
                 {jogos.map((item: any) => (
                     <div key={item.id} className="p-2">
-                        <Image priority width={1920} height={1200} src={item.capa} alt={item.capa} className="rounded-lg shadow-lg h-[75vh] w-full object-cover focus-visible:border-none" />
+                        <Image priority src={item.background} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-lg h-screen w-full object-fill" />
                         <div className='absolute bottom-[80px] text-white px-3 pl-[28px] sm:pl-[36px] md:pl-[48px] lg:pl-[60px] w-full'>
                             <h2 className='font-bold text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl mb-3'>{item.titulo}</h2>
                             <p className='sm:text-left sm:pr-4 sm:mb-6 text-ellipsis overflow-hidden md:text-lg'>{item.desenvolvedora}</p>
