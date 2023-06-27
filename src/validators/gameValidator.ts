@@ -33,6 +33,12 @@ const cursoValidator = {
                 message: "Quantidade maxima de caracteres: 200"
             },
         },
+        background: {
+            maxLength: {
+                value: 200,
+                message: "Quantidade maxima de caracteres: 200"
+            },
+        },
     },
     usuarios: {
         nome: {

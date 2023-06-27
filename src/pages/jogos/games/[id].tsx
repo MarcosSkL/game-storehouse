@@ -2,7 +2,7 @@ import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router' // Importe o useRouter do Next.js
+import { useRouter } from 'next/router'
 
 const Games = () => {
 

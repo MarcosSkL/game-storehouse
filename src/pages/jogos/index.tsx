@@ -6,6 +6,7 @@ import axios from 'axios'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
+import Default from '../../../public/default.jpg'
 
 const index = () => {
 
@@ -26,7 +27,7 @@ const index = () => {
 
     function excluir(id: any) {
         if (confirm("Deseja excluir o registro?")) {
-            axios.delete('/api/cursos/' + id)
+            axios.delete('/api/jogos/' + id)
             getAll()
         }
     }
@@ -63,6 +64,9 @@ const index = () => {
                                         <th scope="col" className="px-2 py-3">
                                             Capa
                                         </th>
+                                        <th scope="col" className="px-2 py-3">
+                                            Background
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,7 +101,10 @@ const index = () => {
                                                 {item.sinopse}
                                             </td>
                                             <td className="px-2 py-2">
-                                                <Image src={item.capa} width={1000} height={200} alt='Capa Star Wars: Suvrvivor' />
+                                                <Image src={item.capa} width={500} height={200} alt={"Capa " + item.titulo} />
+                                            </td>
+                                            <td className="px-2 py-2">
+                                                <Image src={item.background} width={200} height={200} alt={"Background " + item.titulo} />
                                             </td>
 
                                         </tr>
