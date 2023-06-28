@@ -36,7 +36,7 @@ const CarouselUser = () => {
             <Slider {...settings}>
                 {usuarios.map((item: any) => (
                     <div key={item.id} className="p-2">
-                        <Link href={'usuarios/games/' + item.id}>
+                        <Link href={'usuarios/membros/' + item.id}>
                         <Image priority src={item.foto} width={1920} height={1200} alt={"Foto " + item.nome} className="rounded-lg shadow-lg" />
                         </Link>
                     </div>
