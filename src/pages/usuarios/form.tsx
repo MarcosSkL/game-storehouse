@@ -12,7 +12,7 @@ import Footer from '@/components/Footer';
 
 const Formulario = () => {
 
-    const [generos, setGeneros] = useState([])
+    const [generos, setGeneros] = useState([]) 
 
     useEffect(() => {
         getAll()

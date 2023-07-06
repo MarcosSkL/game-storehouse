@@ -24,9 +24,6 @@ const Games = () => {
             try {
                 const jogos = await axios.get(`/api/jogos/${id}`) // Use o id na URL da API e aguarde a resposta
                 setJogos(jogos.data)
-
-                console.log(jogos)
-
             } catch (error) {
                 console.error(error) // Trate os possíveis erros
             }
