@@ -26,7 +26,7 @@ const CarouselUser = () => {
         centerMode: true,
         infinite: true,
         centerPadding: "60px",
-        slidesToShow: 8,
+        slidesToShow: 6,
         speed: 500
 
     };
@@ -37,7 +37,7 @@ const CarouselUser = () => {
                 {usuarios.map((item: any) => (
                     <div key={item.id} className="p-2">
                         <Link href={'usuarios/membros/' + item.id}>
-                        <Image priority src={item.foto} width={1920} height={1200} alt={"Foto " + item.nome} className="rounded-lg shadow-lg" />
+                        <Image src={item.foto} width={1200} height={1800}  alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black w-[250px] h-[250px]" />
                         </Link>
                     </div>
                 ))}

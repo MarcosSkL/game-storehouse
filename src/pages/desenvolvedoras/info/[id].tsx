@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import Image from 'next/image'
+import Slider from 'react-slick'
 
 const Info = () => {
 
@@ -50,6 +51,16 @@ const Info = () => {
         })
     }
 
+    const settings = {
+        className: "center",
+        centerMode: false,
+        infinite: false,
+        centerPadding: "60px",
+        slidesToShow: 4,
+        speed: 500
+
+    };
+
     return (
         <>
             <Header />
@@ -75,15 +86,21 @@ const Info = () => {
                         </Card>
                     </Col>
                     <Row>
-                        <div className='pt-5'>
-                            <p className='text-3xl'><strong>Jogos</strong></p>
-                        </div>
-                        {jogos.filter(item => item.desenvolvedora === desenvolvedoras.nome).map((item: any) => (
-                            <div>
-                                <Image src={item.capa} width={300} height={300} alt={item.titulo} />
-                                {item.titulo}
+                        <Col md={12}>
+                            <div className='pt-5'>
+                                <p className='text-3xl'><strong>Jogos</strong></p>
                             </div>
-                        ))}
+                            <Slider {...settings}>
+                                {jogos.filter(item => item.desenvolvedora === desenvolvedoras.nome).map((item: any) => (
+                                    <div key={item.id} className='flex'>
+                                        <Link href={'/jogos/games/' + item.id}>
+                                            <Image src={item.capa} width={300} height={300} alt={item.titulo} />
+                                        </Link>
+                                        <p>{item.titulo}</p>
+                                    </div>
+                                ))}
+                            </Slider>
+                        </Col>
                     </Row>
 
 
