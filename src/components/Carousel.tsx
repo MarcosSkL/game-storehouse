@@ -52,7 +52,7 @@ const Carousel = () => {
             <Slider {...settings}>
                 {jogos.map((item: any) => (
                     <div key={item.id} className="p-2">
-                        <Image priority src={item.background} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-lg h-screen w-full object-fill" />
+                        <Image priority src={item.background} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-95 h-screen w-full object-fill" />
                         <div className='absolute bottom-[80px] text-white px-3 pl-[28px] sm:pl-[36px] md:pl-[48px] lg:pl-[60px] w-full'>
                             <h2 className='font-bold text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl mb-3'>{item.titulo}</h2>
                             <p className='sm:text-left sm:pr-4 sm:mb-6 text-ellipsis overflow-hidden md:text-lg'>{item.desenvolvedora}</p>
