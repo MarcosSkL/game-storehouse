@@ -37,7 +37,7 @@ const CarouselDevs = () => {
                 {desenvolvedoras.map((item: any) => (
                     <div key={item.id} className="p-2">
                         <Link href={'desenvolvedoras/info/' + item.id}>
-                        <Image priority src={item.logo} width={9999} height={9999} alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black" />
+                        <Image priority src={item.logo} width={9999} height={9999} alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110" />
                         </Link>
                     </div>
                 ))}
