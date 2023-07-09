@@ -26,7 +26,7 @@ const CarouselSmall = () => {
         centerMode: true,
         infinite: true,
         centerPadding: "60px",
-        slidesToShow: 8,
+        slidesToShow: 6,
         speed: 500
 
     };

@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const Carousel = () => {
     const [jogos, setJogos] = useState([]);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
         getAll();
@@ -25,7 +26,7 @@ const Carousel = () => {
         dots: true,
         infinite: true,
         speed: 2000,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -43,9 +44,12 @@ const Carousel = () => {
                 </ul>
             </div>
         ),
-        customPaging: (i:number) => (
-            
-            <div className="bgcolor w-3 h-3  bg-gray-200 hover:bg-gray-700 rounded-full "></div>
+        beforeChange: (current, next) => setCurrentSlide(next),
+        customPaging: (i) => (
+            <div
+                className={`w-3 h-3 mx-0 rounded-full ${i === currentSlide ? "bg-slate-50" : "bg-slate-500"
+                    }`}
+            ></div>
         ),
     };
     return (
@@ -53,9 +57,9 @@ const Carousel = () => {
             <Slider {...settings}>
                 {jogos.map((item: any) => (
                     <div key={item.id} className="p-2">
-                        <Image priority src={item.background} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-lg h-screen w-full object-fill" />
-                        <div className='absolute bottom-[80px] text-white px-3 pl-[28px] sm:pl-[36px] md:pl-[48px] lg:pl-[60px] w-full'>
-                            <h2 className='font-bold text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl mb-3'>{item.titulo}</h2>
+                        <Image priority src={item.background} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-95 h-screen w-full object-fill" />
+                        <div className='absolute bottom-[80px] text-white px-3 pl-[28px] sm:pl-[36px] md:pl-[48px] lg:pl-[60px] w-screen'>
+                            <h2 className='font-bold text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl mb-3 me-60'>{item.titulo}</h2>
                             <p className='sm:text-left sm:pr-4 sm:mb-6 text-ellipsis overflow-hidden md:text-lg'>{item.desenvolvedora}</p>
                             <div className=' gap-5 items-center hidden sm:flex'>
                                 <Link href={'jogos/games/' + item.id}>
