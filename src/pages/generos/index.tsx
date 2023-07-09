@@ -7,7 +7,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
 
-const index = () => {
+const Index = () => {
 
     const [generos, setGeneros] = useState([])
 
@@ -93,4 +93,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index

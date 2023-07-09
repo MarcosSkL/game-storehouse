@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 import Image from 'next/image'
 import Default from '../../../public/default.jpg'
 
-const index = () => {
+const Index = () => {
 
     const [jogos, setJogos] = useState([])
 
@@ -123,4 +123,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index
