@@ -7,11 +7,12 @@ import { useRouter } from 'next/router'
 const Membros = () => {
 
     interface Membro {
-        id: number;
-        titulo: string;
+        nome: string;
+        email: string,
+        foto: string
     }
 
-    const [usuarios, setUsuarios] = useState<Membro[]>([])
+    const [usuarios, setUsuarios] = useState<Membro | null>(null)
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
@@ -35,7 +36,7 @@ const Membros = () => {
         <>
             <Header />
             <div className='container text-slate-50'>
-                <h1>{usuarios.nome}</h1>
+                <h1>{usuarios?.nome}</h1>
             </div>
             <Footer />
         </>

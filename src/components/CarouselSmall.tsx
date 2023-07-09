@@ -32,7 +32,7 @@ const CarouselSmall = () => {
     };
     return (
         <div className="p-4">
-            <h2 className="text-white text-2xl font-bold">Jogos em Alta</h2>
+            <h2 className="text-white text-2xl font-bold">Jogos</h2>
             <Slider {...settings}>
                 {jogos.map((item: any) => (
                     <div key={item.id} className="p-2">

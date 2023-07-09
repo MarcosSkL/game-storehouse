@@ -65,7 +65,7 @@ const FormAlterUsuarios = () => {
         const valor = event.target.value
         const mascara = event.target.getAttribute("mask").split(", ")
 
-        const marscaraInt = Number("mask")
+        const marscaraInt = Number(mask)
 
 
 

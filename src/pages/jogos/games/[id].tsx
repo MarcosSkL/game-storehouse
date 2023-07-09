@@ -8,13 +8,27 @@ import Link from 'next/link'
 
 const Games = () => {
 
-    interface Jogo {
+    interface Jogos {
         id: number;
         titulo: string;
+        desenvolvedora: string,
+        plataforma: string,
+        genero: string,
+        sinopse: string,
+        capa: string,
+        background: string
     }
 
-    const [jogos, setJogos] = useState<Jogo[]>([])
-    const [reviews, setReviews] = useState<Jogo[]>([])
+    interface Reviews {
+        usuario: string,
+        jogo: string,
+        nota: number,
+        comentario: string,
+        data: Date
+    }
+
+    const [jogos, setJogos] = useState<Jogos | null>(null)
+    const [reviews, setReviews] = useState<Reviews[]>([])
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
@@ -54,9 +68,9 @@ const Games = () => {
 
                     <Col md={4}>
                         <Card>
-                            <Card.Img variant="top" src={jogos.capa} />
+                            <Card.Img variant="top" src={jogos?.capa} />
                             <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
-                                <Card.Title className='h5'>{jogos.titulo}</Card.Title>
+                                <Card.Title className='h5'>{jogos?.titulo}</Card.Title>
                             </Card.Body>
                         </Card>
 
@@ -64,15 +78,15 @@ const Games = () => {
                     <Col md={8}>
                         <Card>
                             <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
-                                <p className='text-xl'><strong>Plataformas:</strong> {jogos.plataforma} </p>
-                                <p className='text-xl'><strong>Desenvolvedora:</strong> {jogos.desenvolvedora} </p>
-                                <p className='text-xl'><strong>Genero: </strong> {jogos.genero} </p>
+                                <p className='text-xl'><strong>Plataformas:</strong> {jogos?.plataforma} </p>
+                                <p className='text-xl'><strong>Desenvolvedora:</strong> {jogos?.desenvolvedora} </p>
+                                <p className='text-xl'><strong>Genero: </strong> {jogos?.genero} </p>
                             </Card.Body>
                         </Card>
                         <Card>
                             <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
                                 <p className='text-center text-3xl'><strong>Sinopse</strong></p>
-                                <p className='text-xl'>{jogos.sinopse}</p>
+                                <p className='text-xl'>{jogos?.sinopse}</p>
 
                             </Card.Body>
                         </Card>
@@ -85,10 +99,10 @@ const Games = () => {
                         <Card>
                             <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
                                 <p className='text-center text-3xl'><strong>Reviews:</strong></p>
-                                {reviews.map((item) => (
-                                    <div>
-                                        <p className='text-xl font-bold -pb-5'>{item.jogo == jogos.titulo ? item.usuario : ""}</p>
-                                        <p className='text-xl'>{item.jogo == jogos.titulo ? item.comentario : ""}</p>
+                                {reviews.map((item:any) => (
+                                    <div key={item.id}>
+                                        <p className='text-xl font-bold -pb-5'>{item.jogo == jogos?.titulo ? item.usuario : ""}</p>
+                                        <p className='text-xl'>{item.jogo == jogos?.titulo ? item.comentario : ""}</p>
                                     </div>
                                 ))}
                             </Card.Body>

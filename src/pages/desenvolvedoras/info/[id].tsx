@@ -10,16 +10,26 @@ import Slider from 'react-slick'
 
 const Info = () => {
 
-    interface Info {
+    interface Desenvolvedores {
         id: number;
         nome: string;
         logo: string;
         pais: string;
         fundacao: string;
     }
+    interface Jogos {
+        id: number;
+        titulo: string;
+        desenvolvedora: string,
+        plataforma: string,
+        genero: string,
+        sinopse: string,
+        capa: string,
+        background: string
+    }
 
-    const [desenvolvedoras, setDesenvolvedoras] = useState<Info[]>([])
-    const [jogos, setJogos] = useState<Info[]>([])
+    const [desenvolvedoras, setDesenvolvedoras] = useState<Desenvolvedores | null>(null)
+    const [jogos, setJogos] = useState<Jogos[]>([])
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
@@ -69,9 +79,9 @@ const Info = () => {
 
                     <Col md={4}>
                         <Card>
-                            <Card.Img variant="top" src={desenvolvedoras.logo} />
+                            <Card.Img variant="top" src={desenvolvedoras?.logo} />
                             <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
-                                <Card.Title className='h5'>{desenvolvedoras.nome}</Card.Title>
+                                <Card.Title className='h5'>{desenvolvedoras?.nome}</Card.Title>
                             </Card.Body>
                         </Card>
 
@@ -79,8 +89,8 @@ const Info = () => {
                     <Col md={8}>
                         <Card>
                             <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
-                                <p className='text-xl'><strong>País:</strong> {desenvolvedoras.pais} </p>
-                                <p className='text-xl'><strong>Fundação:</strong> {desenvolvedoras.fundacao} </p>
+                                <p className='text-xl'><strong>País:</strong> {desenvolvedoras?.pais} </p>
+                                <p className='text-xl'><strong>Fundação:</strong> {desenvolvedoras?.fundacao} </p>
 
                             </Card.Body>
                         </Card>
@@ -91,7 +101,7 @@ const Info = () => {
                                 <p className='text-3xl'><strong>Jogos</strong></p>
                             </div>
                             <Slider {...settings}>
-                                {jogos.filter(item => item.desenvolvedora === desenvolvedoras.nome).map((item: any) => (
+                                {jogos.filter(item => item.desenvolvedora === desenvolvedoras?.nome).map((item: any) => (
                                     <div key={item.id} className='flex'>
                                         <Link href={'/jogos/games/' + item.id}>
                                             <Image src={item.capa} width={300} height={300} alt={item.titulo} />
