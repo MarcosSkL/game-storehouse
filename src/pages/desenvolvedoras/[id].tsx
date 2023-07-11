@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { AiOutlineCheck, AiOutlineArrowLeft } from 'react-icons/ai'
 import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
-import { mask, unmask } from 'remask';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -46,18 +45,7 @@ const FormAlterDesenvolvedoras = () => {
         push('/desenvolvedoras')
     }
 
-    const MaskName = (event: any) => {
 
-        const nome = event.target.name
-        const valor = event.target.value
-        const mascara = event.target.getAttribute("mask").split(", ")
-
-        const marscaraInt = Number("mask")
-
-
-
-        setValue(nome, mask(unmask(valor), mascara))
-    }
     return (
 
         <>

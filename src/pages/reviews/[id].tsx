@@ -6,9 +6,9 @@ import { useRouter } from 'next/router';
 import { AiOutlineCheck, AiOutlineArrowLeft } from 'react-icons/ai'
 import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
-import { mask, unmask } from 'remask';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ReactInputMask from 'react-input-mask';
 
 const FormAlterReviews = () => {
 
@@ -64,18 +64,7 @@ const FormAlterReviews = () => {
         push('/reviews')
     }
 
-    const MaskName = (event: any) => {
 
-        const nome = event.target.name
-        const valor = event.target.value
-        const mascara = event.target.getAttribute("mask").split(", ")
-
-        const marscaraInt = Number("mask")
-
-
-
-        setValue(nome, mask(unmask(valor), mascara))
-    }
     return (
 
         <>
@@ -117,7 +106,11 @@ const FormAlterReviews = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Nota">
                                 <Form.Label>Nota</Form.Label>
-                                <Form.Control type="number" placeholder="de 0 a 99" mask="99" {...register('nota', gameValidator.reviews.nota)} onChange={MaskName} />
+                                <Form.Control
+                                    type="text"
+                                    mask="99"
+                                    as={ReactInputMask}
+                                    {...register('nota', gameValidator.reviews.nota)} />
                                 {
                                     errors.nota &&
                                     <small className='text-red-700'>{errors.nota.message}</small>

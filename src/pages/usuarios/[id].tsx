@@ -6,9 +6,9 @@ import { useRouter } from 'next/router';
 import { AiOutlineCheck, AiOutlineArrowLeft } from 'react-icons/ai'
 import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
-import { mask, unmask } from 'remask';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ReactInputMask from 'react-input-mask';
 
 const FormAlterUsuarios = () => {
 
@@ -59,18 +59,7 @@ const FormAlterUsuarios = () => {
         push('/usuarios')
     }
 
-    const MaskName = (event: any) => {
 
-        const nome = event.target.name
-        const valor = event.target.value
-        const mascara = event.target.getAttribute("mask").split(", ")
-
-        const marscaraInt = Number(mask)
-
-
-
-        setValue(nome, mask(unmask(valor), mascara))
-    }
     return (
 
         <>
@@ -100,7 +89,15 @@ const FormAlterUsuarios = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Senha">
                                 <Form.Label>Senha</Form.Label>
-                                <Form.Control type="password" placeholder="Senha" mask="999999999999" {...register('senha', gameValidator.usuarios.senha)} onChange={MaskName} />
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Senha"
+                                    mask="99999999"
+                                    as={ReactInputMask}
+
+                                    {...register('senha', gameValidator.usuarios.senha)}
+
+                                />
                                 {
                                     errors.senha &&
                                     <small className='text-red-700'>{errors.senha.message}</small>

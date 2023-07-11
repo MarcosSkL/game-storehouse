@@ -1,18 +1,18 @@
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { Button, Card, Col, Row, Table, Form } from 'react-bootstrap'
+import React, { useEffect, useState, createRef } from 'react'
+import { Button, Col, Row, Form } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
 import { AiOutlineCheck, AiOutlineArrowLeft } from 'react-icons/ai'
 import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
-import { mask, unmask } from 'remask';
+import ReactInputMask from 'react-input-mask'
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const Formulario = () => {
 
-    const [generos, setGeneros] = useState([]) 
+    const [generos, setGeneros] = useState([])
 
     useEffect(() => {
         getAll()
@@ -38,7 +38,7 @@ const Formulario = () => {
 
     }
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormValues>();
+    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
     function salvar(dados: any) {
 
@@ -46,19 +46,7 @@ const Formulario = () => {
         push('/usuarios')
 
     }
-    const MaskName = (event: any) => {
 
-        const nome = event.target.name
-        const valor = event.target.value
-        const mascara = event.target.getAttribute("mask").split(", ")
-
-        const marscaraInt = Number("mask")
-
-
-        setValue(nome, mask(unmask(valor), mascara))
-
-
-    }
 
     return (
         <>
@@ -88,7 +76,15 @@ const Formulario = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Senha">
                                 <Form.Label>Senha</Form.Label>
-                                <Form.Control type="password" placeholder="Senha" mask="999999999999" {...register('senha', gameValidator.usuarios.senha)} onChange={MaskName} />
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Senha"
+                                    mask="99999999"
+                                    as={ReactInputMask}
+
+                                    {...register('senha', gameValidator.usuarios.senha)}
+
+                                />
                                 {
                                     errors.senha &&
                                     <small className='text-red-700'>{errors.senha.message}</small>
