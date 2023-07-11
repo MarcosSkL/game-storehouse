@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Logo from '../../public/Logo.png'
+import logo from '../../public/logo.png'
 import { IoSearch, IoMenu } from 'react-icons/io5'
 import Image from 'next/image'
 import { Offcanvas } from 'react-bootstrap'
@@ -33,7 +33,7 @@ const Header = () => {
                             <p><Link href='/generos' className='no-underline text-lg font-semibold font-serif text-slate-200 text-current hover:text-gray-400'>Gêneros</Link></p>
                         </Offcanvas.Body>
                     </Offcanvas>
-                    <Link href={"/"}><Image src={Logo} height={100} width={100} alt='Logo Site' /> </Link>
+                    <Link href={"/"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
                 </div>
                 <div className='pe-20'>
                     <div className="absolute focus:pointer-events-auto">
