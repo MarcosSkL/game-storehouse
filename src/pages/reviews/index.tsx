@@ -46,6 +46,9 @@ const Index = () => {
                                             #
                                         </th>
                                         <th scope="col" className="px-2 py-3">
+                                            Foto
+                                        </th>
+                                        <th scope="col" className="px-2 py-3">
                                             Usuario
                                         </th>
                                         <th scope="col" className="px-2 py-3">
@@ -79,6 +82,9 @@ const Index = () => {
                                                 </div>
                                             </td>
 
+                                            <td className="px-2 py-2">
+                                                <Image src={item.foto} width={100} height={100} alt={item.usuario} />
+                                            </td>
                                             <td className="px-2 py-2">
                                                 {item.usuario}
                                             </td>

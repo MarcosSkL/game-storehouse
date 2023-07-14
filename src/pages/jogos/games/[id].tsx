@@ -3,8 +3,14 @@ import Header from '@/components/Header'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Card, Col, Row } from 'react-bootstrap'
+import { Button, Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
+import Image from 'next/image'
+import ModalForm from '@/components/ModalForm'
+
+
+
+
 
 const Games = () => {
 
@@ -29,6 +35,8 @@ const Games = () => {
 
     const [jogos, setJogos] = useState<Jogos | null>(null)
     const [reviews, setReviews] = useState<Reviews[]>([])
+
+
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
@@ -99,15 +107,20 @@ const Games = () => {
                         <Card>
                             <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
                                 <p className='text-center text-3xl'><strong>Reviews:</strong></p>
-                                {reviews.map((item:any) => (
+                                {reviews.filter(item => item.jogo == jogos?.titulo).map((item: any) => (
                                     <div key={item.id}>
-                                        <p className='text-xl font-bold -pb-5'>{item.jogo == jogos?.titulo ? item.usuario : ""}</p>
-                                        <p className='text-xl'>{item.jogo == jogos?.titulo ? item.comentario : ""}</p>
+                                        <div className='flex items-baseline gap-3'>
+                                            <Image src={item.foto} height={100} width={100} alt={item.usuario} />
+                                            <p className='text-xl font-bold'>{item.usuario}</p>
+                                        </div>
+                                        <p className='text-xl pb-5'>{item.comentario}</p>
                                     </div>
                                 ))}
                             </Card.Body>
 
                         </Card>
+
+                        <ModalForm />
                     </Col>
                 </Row>
                 <div className="d-flex flex-column align-items-start pt-1">

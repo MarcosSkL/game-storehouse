@@ -88,6 +88,9 @@ const cursoValidator = {
         usuario: {
             required: 'O Campo é Obrigatório',
         },
+        foto: {
+            required: 'O Campo é Obrigatório',
+        },
         jogo: {
             required: 'O Campo é Obrigatório',
         },

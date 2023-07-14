@@ -9,13 +9,51 @@ import gameValidator from '@/validators/gameValidator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReactInputMask from 'react-input-mask';
+import Image from 'next/image';
 
 const FormAlterReviews = () => {
 
+    interface FormValues {
+        usuario: string;
+        jogo: string;
+        nota: number;
+        comentario: string;
+        data: string;
+        foto: string;
+    }
+    interface Usuario {
+        id: number;
+        nome: string;
+        foto: string;
+    }
+    interface Jogos {
+        id: number;
+        titulo: string;
+        desenvolvedora: string;
+        plataforma: string;
+        genero: string;
+        sinopse: string;
+        capa: string;
+        background: string;
+    }
+
+
+
     const { push, query } = useRouter()
 
-    const [usuarios, setUsuarios] = useState([])
-    const [jogos, setJogos] = useState([])
+    const [usuarios, setUsuarios] = useState<Usuario[]>([])
+    const [jogos, setJogos] = useState<Jogos[]>([])
+    const [selectedUserImage, setSelectedUserImage] = useState('');
+
+    const handleUserChange = (event: any) => {
+        const selectedUserName = event.target.value;
+        const selectedUser = usuarios.find((item: any) => item.nome === selectedUserName);
+        if (selectedUser) {
+            setSelectedUserImage(selectedUser.foto);
+        } else {
+            setSelectedUserImage('');
+        }
+    };
 
     useEffect(() => {
         getAll()
@@ -37,7 +75,7 @@ const FormAlterReviews = () => {
         jogo: string
         nota: number
         comentario: string
-        data: Date
+        data: string
 
 
     }
@@ -75,20 +113,37 @@ const FormAlterReviews = () => {
                 </Row>
                 <Row className="px-1 mx-1">
                     <Col>
+                        <div className='flex justify-center'>
+                            {selectedUserImage && <Image src={selectedUserImage} height={100} width={100} alt="Selected user" />}
+                        </div>
                         <Form className='text-white font-bold'>
                             <Form.Group className="mb-3" controlId="Usuario">
                                 <Form.Label>Usuario</Form.Label>
-                                <Form.Select placeholder="Usuario" {...register('usuario', gameValidator.reviews.usuario)}>
+                                <Form.Select
+                                    placeholder="Usuario"
+                                    {...register('usuario', gameValidator.reviews.usuario)}
+                                    onChange={handleUserChange}
+
+                                >
                                     {
                                         errors.usuario &&
                                         <small className='text-red-700'>{errors.usuario.message}</small>
                                     }
                                     <option value="nome">Selecione</option>
                                     {usuarios.map((item: any) => (
-                                        <option key={item.id} value={item.nome}>{item.nome}</option>
-
+                                        <option key={item.id} value={item.nome}>
+                                            {item.nome}
+                                        </option>
                                     ))}
                                 </Form.Select>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="foto">
+                                <Form.Label>Foto</Form.Label>
+                                <Form.Control type="string" placeholder="foto" {...register('foto', gameValidator.reviews.foto)} />
+                                {
+                                    errors.foto &&
+                                    <small className='text-red-700'>{errors.foto.message}</small>
+                                }
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Jogo">
                                 <Form.Label>Jogo</Form.Label>

@@ -6,7 +6,7 @@ import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram, FaGithub } from 'react-
 const Footer = () => {
   return (
     <>
-      <footer className='static bottom-0-0 left-0 right-0  items-baseline mt-14 py-16 text-gray-400 px-[28px] sm:px-[36px] md:px-[48px] lg:px-[60px] flex-wrap gap-6 sm:gap-0 bg-gradient-to-r from-black via-sky-950 to-sky-900'>
+      <div className='static bottom-0-0 left-0 right-0  items-baseline mt-14 py-16 text-gray-400 px-[28px] sm:px-[36px] md:px-[48px] lg:px-[60px] flex-wrap gap-6 sm:gap-0 bg-gradient-to-r from-black via-sky-950 to-sky-900'>
 
         <div className='flex justify-between items-center'>
             <Image src={logo} width={90} height={90} alt='Logo' />
@@ -26,7 +26,7 @@ const Footer = () => {
           <Link href={'#'} className='no-underline text-current hover:text-white'>Ajuda</Link>
         </div>
 
-      </footer >
+      </div >
     </>
   );
 };
