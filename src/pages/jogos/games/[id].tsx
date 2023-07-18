@@ -7,6 +7,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import Image from 'next/image'
 import ModalForm from '@/components/ModalForm'
+import ModalFormReview from '@/pages/reviews/ModalFormReview'
 
 
 
@@ -37,7 +38,7 @@ const Games = () => {
     const [reviews, setReviews] = useState<Reviews[]>([])
 
 
-
+    const { push } = useRouter()
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
 
@@ -66,6 +67,13 @@ const Games = () => {
             setReviews(resultado.data)
 
         })
+    }
+
+    function salvar(dados: any) {
+
+        axios.post('/api/reviews', dados)
+        push('/jogos/games/' + id)
+
     }
 
     return (
@@ -120,9 +128,17 @@ const Games = () => {
 
                         </Card>
 
-                        <ModalForm />
+                        <ModalForm>
+                            <>
+                                <ModalFormReview />
+                                
+                            </>
+                        </ModalForm>
+                        
+
                     </Col>
                 </Row>
+                
                 <div className="d-flex flex-column align-items-start pt-1">
                     <Link href={'/'} className='btn btn-primary text-white'>Voltar</Link>
                 </div>
