@@ -9,32 +9,33 @@ import gameValidator from '@/validators/gameValidator';
 import ReactInputMask from 'react-input-mask';
 import Image from 'next/image';
 
+interface FormValues {
+    id:number;
+    usuario: string;
+    jogo: string;
+    nota: number;
+    comentario: string;
+    data: string;
+    foto: string;
+}
+interface Usuario {
+    id: number;
+    nome: string;
+    foto: string;
+}
+interface Jogos {
+    id: number;
+    titulo: string;
+    desenvolvedora: string;
+    plataforma: string;
+    genero: string;
+    sinopse: string;
+    capa: string;
+    background: string;
+}
+
 const ModalFormReview = () => {
 
-    interface FormValues {
-        id:number;
-        usuario: string;
-        jogo: string;
-        nota: number;
-        comentario: string;
-        data: string;
-        foto: string;
-    }
-    interface Usuario {
-        id: number;
-        nome: string;
-        foto: string;
-    }
-    interface Jogos {
-        id: number;
-        titulo: string;
-        desenvolvedora: string;
-        plataforma: string;
-        genero: string;
-        sinopse: string;
-        capa: string;
-        background: string;
-    }
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
     const [jogos, setJogos] = useState<Jogos[]>([])

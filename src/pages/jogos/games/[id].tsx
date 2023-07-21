@@ -10,35 +10,33 @@ import ModalForm from '@/components/ModalForm'
 import ModalFormReview from '@/pages/reviews/ModalFormReview'
 
 
+interface Jogos {
+    id: number;
+    titulo: string;
+    desenvolvedora: string,
+    plataforma: string,
+    genero: string,
+    sinopse: string,
+    capa: string,
+    background: string
+}
+
+interface Reviews {
+    usuario: string,
+    jogo: string,
+    nota: number,
+    comentario: string,
+    data: Date
+}
 
 
 
 const Games = () => {
 
-    interface Jogos {
-        id: number;
-        titulo: string;
-        desenvolvedora: string,
-        plataforma: string,
-        genero: string,
-        sinopse: string,
-        capa: string,
-        background: string
-    }
-
-    interface Reviews {
-        usuario: string,
-        jogo: string,
-        nota: number,
-        comentario: string,
-        data: Date
-    }
 
     const [jogos, setJogos] = useState<Jogos | null>(null)
     const [reviews, setReviews] = useState<Reviews[]>([])
 
-
-    const { push } = useRouter()
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
 
@@ -47,6 +45,10 @@ const Games = () => {
             try {
                 const jogos = await axios.get(`/api/jogos/${id}`) // Use o id na URL da API e aguarde a resposta
                 setJogos(jogos.data)
+
+                const reviews = await axios.get('/api/reviews')
+                    setReviews(reviews.data)
+        
             } catch (error) {
                 console.error(error) // Trate os possíveis erros
             }
@@ -57,24 +59,7 @@ const Games = () => {
         }
     }, [id]) // Use o id como dependência do useEffect
 
-    useEffect(() => {
-        getAll()
-    }, [])
 
-    function getAll() {
-
-        axios.get('/api/reviews').then(resultado => {
-            setReviews(resultado.data)
-
-        })
-    }
-
-    function salvar(dados: any) {
-
-        axios.post('/api/reviews', dados)
-        push('/jogos/games/' + id)
-
-    }
 
     return (
         <>
@@ -131,14 +116,14 @@ const Games = () => {
                         <ModalForm>
                             <>
                                 <ModalFormReview />
-                                
+
                             </>
                         </ModalForm>
-                        
+
 
                     </Col>
                 </Row>
-                
+
                 <div className="d-flex flex-column align-items-start pt-1">
                     <Link href={'/'} className='btn btn-primary text-white'>Voltar</Link>
                 </div>
