@@ -1,13 +1,8 @@
 import ModalFormReview from '@/pages/reviews/ModalFormReview';
 import React, { useState } from 'react'
 
-interface ModalFormProps {
-    onSave: (dados: any) => void;
-    onCloseModal: () => void;
-  }
 
-
-  const ModalForm: React.FC<ModalFormProps> = ({ onSave, onCloseModal }) => {
+  const ModalForm: React.FC = () => {
 
     const [showModal, setShowModal] = useState(false);
 
