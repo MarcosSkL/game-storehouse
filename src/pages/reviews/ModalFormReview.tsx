@@ -10,7 +10,7 @@ import ReactInputMask from 'react-input-mask';
 import Image from 'next/image';
 
 interface FormValues {
-    id:number;
+    id: number;
     usuario: string;
     jogo: string;
     nota: number;
@@ -33,8 +33,12 @@ interface Jogos {
     capa: string;
     background: string;
 }
+interface ModalFormReviewProps {
+    onSave: (dados: any) => void;
+    onCloseModal: () => void;
+}
 
-const ModalFormReview = () => {
+const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal }) => {
 
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
@@ -75,16 +79,20 @@ const ModalFormReview = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
-    function salvar(dados: any) {
+    const salvar = async (dados: FormValues) => {
 
-        axios.post('/api/reviews', dados)
-        router.push('/jogos/games/' + id)
-
+        await axios.post('/api/reviews', dados)
+        onSave(dados); // Chame a função onSave passando os dados para o ModalForm
+        onCloseModal();
+        if (id) {
+            router.push(`/jogos/games/${id}`);
+          }
     }
+
 
     return (
         <>
-            
+
             <div className='container'>
                 <Row>
                     <span className='text-5xl p-2 justify-center flex mb-5 rounded-full font-bold box-decoration-slice bg-gradient-to-r from-indigo-600 to-cyan-500 text-white px-3'>Inserir Review</span>
@@ -188,7 +196,7 @@ const ModalFormReview = () => {
 
                 </Row>
             </div >
-           
+
         </>
     )
 }

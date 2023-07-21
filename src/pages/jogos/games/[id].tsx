@@ -7,7 +7,6 @@ import { Button, Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import Image from 'next/image'
 import ModalForm from '@/components/ModalForm'
-import ModalFormReview from '@/pages/reviews/ModalFormReview'
 
 
 interface Jogos {
@@ -113,13 +112,7 @@ const Games = () => {
 
                         </Card>
 
-                        <ModalForm>
-                            <>
-                                <ModalFormReview />
-
-                            </>
-                        </ModalForm>
-
+                        <ModalForm />
 
                     </Col>
                 </Row>

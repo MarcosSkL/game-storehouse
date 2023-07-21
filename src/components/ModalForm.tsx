@@ -1,13 +1,24 @@
+import ModalFormReview from '@/pages/reviews/ModalFormReview';
 import React, { useState } from 'react'
 
-interface Props {
-    children: React.ReactNode;
+interface ModalFormProps {
+    onSave: (dados: any) => void;
+    onCloseModal: () => void;
+  }
 
-}
 
-const ModalForm = ({ children, ...props }: Props) => {
+  const ModalForm: React.FC<ModalFormProps> = ({ onSave, onCloseModal }) => {
 
     const [showModal, setShowModal] = useState(false);
+
+    const handleSaveReview = (dados: any) => {
+       
+        console.log('Dados salvos:', dados);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
 
     return (
@@ -29,8 +40,8 @@ const ModalForm = ({ children, ...props }: Props) => {
 
                             <div className="rounded-3xl shadow-black shadow-2xl relative bg-slate-700 outline-none focus:outline-none">
 
-                                <div {...props} className="relative p-6">
-                                    {children}
+                                <div className="relative p-6">
+                                    <ModalFormReview onSave={handleSaveReview} onCloseModal={handleCloseModal} />
                                 </div>
 
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
