@@ -2,19 +2,20 @@ import ModalFormReview from '@/pages/reviews/ModalFormReview';
 import React, { useState } from 'react'
 
 
-  const ModalForm: React.FC = () => {
+const ModalForm: React.FC = () => {
 
     const [showModal, setShowModal] = useState(false);
 
+
     const handleSaveReview = (dados: any) => {
-       
+
         console.log('Dados salvos:', dados);
+    
     };
 
     const handleCloseModal = () => {
         setShowModal(false);
     };
-
 
     return (
 
@@ -29,13 +30,14 @@ import React, { useState } from 'react'
             {showModal ? (
                 <>
                     <div
-                        className="justify-center items-center flex overflow-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        className="top-10 md:mx-[27rem] justify-center items-center flex overflow-auto fixed z-20 outline-none focus:outline-none"
+                        
                     >
-                        <div className="relative h-full w-[40rem]">
+                        <div className="w-[30rem]">
 
-                            <div className="rounded-3xl shadow-black shadow-2xl relative bg-slate-700 outline-none focus:outline-none">
+                            <div className="rounded-3xl bg-slate-700">
 
-                                <div className="relative p-6">
+                                <div className="p-6">
                                     <ModalFormReview onSave={handleSaveReview} onCloseModal={handleCloseModal} />
                                 </div>
 
@@ -47,18 +49,13 @@ import React, { useState } from 'react'
                                     >
                                         Close
                                     </button>
-                                    <button
-                                        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                        onClick={() => setShowModal(false)}
-                                    >
-                                        Save Changes
-                                    </button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="backdrop-blur-sm bg-black/30 fixed inset-0 z-40"></div>
+                    
+                    <div className="backdrop-blur-sm bg-black/30 fixed inset-0 z-10" onClick={handleCloseModal}></div>
                 </>
             ) : null}
         </>

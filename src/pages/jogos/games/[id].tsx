@@ -7,6 +7,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import Image from 'next/image'
 import ModalForm from '@/components/ModalForm'
+import { AiOutlineDelete } from 'react-icons/ai'
 
 
 interface Jogos {
@@ -36,29 +37,41 @@ const Games = () => {
     const [jogos, setJogos] = useState<Jogos | null>(null)
     const [reviews, setReviews] = useState<Reviews[]>([])
 
+
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
 
+    async function getAll() {
+        try {
+            const jogos = await axios.get(`/api/jogos/${id}`); // Use o id na URL da API e aguarde a resposta
+            setJogos(jogos.data);
+
+            const reviews = await axios.get('/api/reviews');
+            setReviews(reviews.data);
+
+            const del = await axios.delete(`/api/reviews/${id}`);
+        } catch (error) {
+            console.error(error); // Trate os possíveis erros
+        }
+    }
+
     useEffect(() => {
-        async function getAll() { // Transforme a função em assíncrona
-            try {
-                const jogos = await axios.get(`/api/jogos/${id}`) // Use o id na URL da API e aguarde a resposta
-                setJogos(jogos.data)
+        getAll();
+    }, []);
 
-                const reviews = await axios.get('/api/reviews')
-                    setReviews(reviews.data)
-        
-            } catch (error) {
-                console.error(error) // Trate os possíveis erros
-            }
+    useEffect(() => {
+        if (id) {
+            // Verifique se o id existe
+            getAll(); // Chame a função getAll
         }
+    }, [id]); // Use o id como dependência do useEffect
 
-        if (id) { // Verifique se o id existe
-            getAll() // Chame a função getAll
+    function excluir(id: any) {
+        if (confirm('Deseja excluir o registro?')) {
+            axios.delete(`/api/reviews/${id}`);
+            getAll();
         }
-    }, [id]) // Use o id como dependência do useEffect
-
-
+    }
 
     return (
         <>
@@ -105,7 +118,11 @@ const Games = () => {
                                             <Image src={item.foto} height={100} width={100} alt={item.usuario} />
                                             <p className='text-xl font-bold'>{item.usuario}</p>
                                         </div>
-                                        <p className='text-xl pb-5'>{item.comentario}</p>
+                                        <p className='flex gap-2 text-xl pb-5'>{item.comentario}
+                                            <AiOutlineDelete
+                                                onClick={() => excluir(item.id)}
+                                                type='submit'
+                                                className='text-danger text-2xl' /></p>
                                     </div>
                                 ))}
                             </Card.Body>
