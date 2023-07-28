@@ -1,22 +1,21 @@
 import ModalFormReview from '@/pages/reviews/ModalFormReview';
 import React, { useEffect, useState } from 'react'
+import { IoClose } from 'react-icons/io5';
 
+interface ModalFormProps {
+    onAddReview: (newReview: any) => void;
+}
 
-const ModalForm: React.FC = () => {
+const ModalForm: React.FC<ModalFormProps> = ({ onAddReview }) => {
 
     const [showModal, setShowModal] = useState(false);
-    const [reviewAdded, setReviewAdded] = useState(false);
 
-    useEffect(() => {
-        if (reviewAdded) {
-            window.location.reload(); // Recarrega a página quando uma nova revisão for adicionada
-        }
-    }, [reviewAdded]);
+
 
     const handleSaveReview = (dados: any) => {
 
         console.log('Dados salvos:', dados);
-        setReviewAdded(true);
+        onAddReview(dados); // Chama a função onAddReview passada como prop com os dados da nova revisão
 
     };
 
@@ -37,12 +36,21 @@ const ModalForm: React.FC = () => {
             {showModal ? (
                 <>
                     <div
-                        className="top-10 md:mx-[27rem] justify-center items-center flex overflow-auto fixed z-20 outline-none focus:outline-none"
+                        className="top-2 md:mx-[27rem] justify-center items-center flex overflow-auto fixed z-20 outline-none focus:outline-none"
 
                     >
-                        <div className="w-[30rem]">
+                        <div className="w-[30rem] h-full">
 
                             <div className="rounded-3xl bg-slate-700">
+                            <div className='flex justify-end'>
+                                    <button
+                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button"
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        <IoClose className='text-xl' />
+                                    </button>
+                                </div>
 
                                 <div className="p-6">
                                     <ModalFormReview onSave={handleSaveReview} onCloseModal={handleCloseModal} />

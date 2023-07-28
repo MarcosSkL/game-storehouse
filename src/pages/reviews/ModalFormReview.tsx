@@ -45,9 +45,10 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
     const [jogos, setJogos] = useState<Jogos[]>([])
     const [selectedUserImage, setSelectedUserImage] = useState('');
 
+    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
-
 
     const handleUserChange = (event: any) => {
         const selectedUserName = event.target.value;
@@ -81,23 +82,11 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
     }
 
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-
     const salvar = async (dados: FormValues) => {
 
         await axios.post('/api/reviews', dados)
         onSave(dados) // Chame a função onSave passando os dados para o ModalForm
         onCloseModal()
-        if (id) {
-            router.push(`/jogos/games/${id}`);
-        }
-        
-        function excluir(id: any) {
-            if (confirm('Deseja excluir o registro?')) {
-                axios.delete(`/api/reviews/${id}`);
-                getAll();
-            }
-        }
 
     }
 
@@ -106,7 +95,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
 
             <div className='container'>
                 <Row>
-                    <span className='text-5xl p-2 justify-center flex mb-5 rounded-full font-bold box-decoration-slice bg-gradient-to-r from-indigo-600 to-cyan-500 text-white px-3'>Inserir Review</span>
+                    <span className='text-3xl p-2 justify-center flex mb-2 rounded-full font-bold text-white px-3'>Inserir Review</span>
                 </Row>
                 <Row className="px-1 mx-1">
                     <Col>
@@ -137,7 +126,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
 
                             <Form.Group className="mb-3" controlId="foto">
                                 <Form.Label>Foto</Form.Label>
-                                <Form.Control type="string" placeholder="foto" value={selectedUserImage} {...register('foto', gameValidator.reviews.foto)} />
+                                <Form.Control type="string" placeholder="foto" value={selectedUserImage} {...register('foto', gameValidator.reviews.foto)} readOnly />
                                 {
                                     errors.foto &&
                                     <small className='text-red-700'>{errors.foto.message}</small>
@@ -187,18 +176,17 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                             </Form.Group>
 
                             <div className='flex gap-3 justify-center pb-5'>
-                                <Button variant="primary" onClick={handleSubmit(salvar)}>
-                                    <div className='flex gap-2'><AiOutlineCheck />
+                                <button
+                                    onClick={handleSubmit(salvar)}
+                                    type="button"
+                                    className="bg-blue-500 text-white active:bg-blue-800 font-bold uppercase text-sm px-6 py-3 mt-2 rounded-lg shadow-black shadow-2xl hover:bg-blue-600 ease-linear transition-all duration-150"
+                                >
+                                    <span className='flex items-center gap-2'>
+                                        <AiOutlineCheck />
                                         Salvar
-                                    </div>
-                                </Button>
+                                    </span>
+                                </button>
 
-                                <Link href={'/jogos/games/' + id} className='btn btn-primary text-white'>
-                                    <div className='flex gap-2'>
-                                        <AiOutlineArrowLeft />
-                                        Voltar
-                                    </div>
-                                </Link>
                             </div>
 
                         </Form>

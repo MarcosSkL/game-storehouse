@@ -41,6 +41,10 @@ const Games = () => {
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
 
+    const handleAddReview = (newReview: any) => {
+        setReviews([...reviews, newReview]); // Adiciona a nova revisão à lista de revisões
+    };
+
     async function getAll() {
         try {
             const jogos = await axios.get(`/api/jogos/${id}`); // Use o id na URL da API e aguarde a resposta
@@ -124,7 +128,7 @@ const Games = () => {
 
                         </Card>
 
-                        <ModalForm />
+                        <ModalForm onAddReview={handleAddReview} />
 
                     </Col>
                 </Row>
