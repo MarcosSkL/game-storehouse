@@ -1,16 +1,23 @@
 import ModalFormReview from '@/pages/reviews/ModalFormReview';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 const ModalForm: React.FC = () => {
 
     const [showModal, setShowModal] = useState(false);
+    const [reviewAdded, setReviewAdded] = useState(false);
 
+    useEffect(() => {
+        if (reviewAdded) {
+            window.location.reload(); // Recarrega a página quando uma nova revisão for adicionada
+        }
+    }, [reviewAdded]);
 
     const handleSaveReview = (dados: any) => {
 
         console.log('Dados salvos:', dados);
-    
+        setReviewAdded(true);
+
     };
 
     const handleCloseModal = () => {
@@ -31,7 +38,7 @@ const ModalForm: React.FC = () => {
                 <>
                     <div
                         className="top-10 md:mx-[27rem] justify-center items-center flex overflow-auto fixed z-20 outline-none focus:outline-none"
-                        
+
                     >
                         <div className="w-[30rem]">
 
@@ -54,7 +61,7 @@ const ModalForm: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className="backdrop-blur-sm bg-black/30 fixed inset-0 z-10" onClick={handleCloseModal}></div>
                 </>
             ) : null}

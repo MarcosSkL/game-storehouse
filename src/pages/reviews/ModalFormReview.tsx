@@ -59,10 +59,12 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
         }
     };
 
-
     useEffect(() => {
-        getAll()
-    }, [])
+        if (id) {
+            // Verifique se o id existe
+            getAll(); // Chame a função getAll
+        }
+    }, [id]); // Use o id como dependência do useEffect
 
     function getAll() {
 
@@ -74,6 +76,8 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
             setJogos(resultado.data)
 
         })
+
+        axios.get(`/api/reviews/${id}`);
     }
 
 
@@ -82,13 +86,20 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
     const salvar = async (dados: FormValues) => {
 
         await axios.post('/api/reviews', dados)
-        onSave(dados); // Chame a função onSave passando os dados para o ModalForm
-        onCloseModal();
+        onSave(dados) // Chame a função onSave passando os dados para o ModalForm
+        onCloseModal()
         if (id) {
             router.push(`/jogos/games/${id}`);
-          }
-    }
+        }
+        
+        function excluir(id: any) {
+            if (confirm('Deseja excluir o registro?')) {
+                axios.delete(`/api/reviews/${id}`);
+                getAll();
+            }
+        }
 
+    }
 
     return (
         <>

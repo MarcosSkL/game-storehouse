@@ -49,15 +49,10 @@ const Games = () => {
             const reviews = await axios.get('/api/reviews');
             setReviews(reviews.data);
 
-            const del = await axios.delete(`/api/reviews/${id}`);
         } catch (error) {
             console.error(error); // Trate os possíveis erros
         }
     }
-
-    useEffect(() => {
-        getAll();
-    }, []);
 
     useEffect(() => {
         if (id) {
