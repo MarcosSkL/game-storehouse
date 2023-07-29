@@ -9,7 +9,6 @@ import gameValidator from '@/validators/gameValidator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReactInputMask from 'react-input-mask';
-import Image from 'next/image';
 
 const Formulario = () => {
 
@@ -90,7 +89,7 @@ const Formulario = () => {
                 <Row className="px-1 mx-1">
                     <Col>
                         <div className='flex justify-center'>
-                            {selectedUserImage && <Image src={selectedUserImage} height={100} width={100} alt="Selected user" />}
+                            {selectedUserImage && <img src={selectedUserImage} height={100} width={100} alt="Selected user" />}
                         </div>
                         <Form className='text-white font-bold'>
                             <Form.Group className="mb-3" controlId="Usuario">
