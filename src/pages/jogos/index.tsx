@@ -5,7 +5,6 @@ import { AiOutlineDelete, AiFillEdit } from 'react-icons/ai'
 import axios from 'axios'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Image from 'next/image'
 import Default from '../../../public/default.jpg'
 
 const Index = () => {

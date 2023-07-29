@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
-import Image from 'next/image'
 import Slider from 'react-slick'
 
 const Info = () => {
@@ -104,7 +103,7 @@ const Info = () => {
                                 {jogos.filter(item => item.desenvolvedora === desenvolvedoras?.nome).map((item: any) => (
                                     <div key={item.id} className='flex'>
                                         <Link href={'/jogos/games/' + item.id}>
-                                            <Image src={item.capa} width={300} height={300} alt={item.titulo} />
+                                            <img src={item.capa} width={300} height={300} alt={item.titulo} />
                                         </Link>
                                         <p>{item.titulo}</p>
                                     </div>

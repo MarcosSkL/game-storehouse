@@ -5,7 +5,7 @@ import { AiOutlineDelete, AiFillEdit } from 'react-icons/ai'
 import axios from 'axios'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import Image from 'next/image'
+
 
 const Index = () => {
 
@@ -89,7 +89,7 @@ const Index = () => {
                                             </td>
                                             <td className="px-2 py-2">
 
-                                                <Image src={item.logo} width={200} height={200} alt='Foto do Usuario' />
+                                                <img src={item.logo} width={200} height={200} alt='Foto do Usuario' />
 
                                             </td>
 

@@ -89,7 +89,7 @@ const Index = () => {
                                             </td>
                                             <td className="px-2 py-2">
 
-                                                <Image src={item.foto} width={200} height={200} alt='Foto do Usuario' />
+                                                <img src={item.foto} width={200} height={200} alt='Foto do Usuario' />
 
                                             </td>
 

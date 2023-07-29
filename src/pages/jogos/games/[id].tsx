@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Button, Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
-import Image from 'next/image'
 import ModalForm from '@/components/ModalForm'
 import { AiOutlineDelete } from 'react-icons/ai'
 
@@ -115,7 +114,7 @@ const Games = () => {
                                     {reviews.filter(item => item.jogo == jogos?.titulo).map((item: any) => (
                                         <div key={item.id}>
                                             <div className='flex items-baseline gap-3'>
-                                                <Image src={item.foto} height={100} width={100} alt={item.usuario} />
+                                                <img src={item.foto} height={100} width={100} alt={item.usuario} />
                                                 <p className='text-xl font-bold'>{item.usuario}</p>
                                             </div>
                                             <p className='flex gap-2 text-xl pb-5'>{item.comentario}

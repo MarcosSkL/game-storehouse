@@ -37,7 +37,7 @@ const CarouselSmall = () => {
                 {jogos.map((item: any) => (
                     <div key={item.id} className="p-2">
                         <Link href={'jogos/games/' + item.id}>
-                        <Image priority src={item.capa} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110" />
+                        <img src={item.capa} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110" />
                         </Link>
                     </div>
                 ))}
