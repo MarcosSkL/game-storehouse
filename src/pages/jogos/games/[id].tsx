@@ -73,9 +73,13 @@ const Games = () => {
 
     return (
         <>
-            <div style={{ '--image-url': `url(${jogos?.background})` } as React.CSSProperties} className="bg-[image:var(--image-url)] bg-cover bg-fixed bg-center">
+            <div>
                 <Header />
-                <div className='container text-slate-50'>
+                <div style={{ '--image-url': `url(${jogos?.background})` } as React.CSSProperties}
+                    className='p-60 bg-[image:var(--image-url)] bg-cover bg-center rounded-b-3xl'
+                >
+                </div>
+                <div className='container -mt-[166px] text-slate-50'>
                     <Row>
 
                         <Col md={4}>

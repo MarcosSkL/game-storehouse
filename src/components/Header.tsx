@@ -17,7 +17,7 @@ const Header = () => {
     return (
 
         <>
-            <header className='sticky top-0 left-0 right-0 ps-5 mb-4 z-10 font-bold flex justify-between items-center bg-gradient-to-r from-black via-sky-950 to-sky-900'>
+            <header className='sticky top-0 left-0 right-0 ps-5 z-10 font-bold flex justify-between items-center bg-gradient-to-r from-black via-sky-950 to-sky-900'>
 
                 <div className='flex items-center gap-6'>
                     <IoMenu className='h-14 w-12 cursor-pointer text-white' onClick={handleShow} />
