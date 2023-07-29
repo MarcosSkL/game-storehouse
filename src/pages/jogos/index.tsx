@@ -101,10 +101,10 @@ const Index = () => {
                                                 {item.sinopse}
                                             </td>
                                             <td className="px-2 py-2">
-                                                <Image src={item.capa} width={500} height={200} alt={"Capa " + item.titulo} />
+                                                <img src={item.capa} width={500} height={200} alt={"Capa " + item.titulo} />
                                             </td>
                                             <td className="px-2 py-2">
-                                                <Image src={item.background} width={200} height={200} alt={"Background " + item.titulo} />
+                                                <img src={item.background} width={200} height={200} alt={"Background " + item.titulo} />
                                             </td>
 
                                         </tr>
