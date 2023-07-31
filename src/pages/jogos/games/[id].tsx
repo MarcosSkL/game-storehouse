@@ -76,15 +76,15 @@ const Games = () => {
             <div>
                 <Header />
                 <div style={{ '--image-url': `url(${jogos?.background})` } as React.CSSProperties}
-                    className='p-60 bg-[image:var(--image-url)] bg-cover bg-center rounded-b-3xl'
+                    className='p-72 bg-[image:var(--image-url)] bg-cover bg-center rounded-b-3xl'
                 >
                 </div>
-                <div className='container -mt-[166px] text-slate-50'>
+                <div className='container -mt-[15rem] text-slate-50'>
                     <Row>
 
                         <Col md={4}>
                             <Card>
-                                <Card.Img variant="top" src={jogos?.capa} />
+                                <Card.Img variant="top" src={jogos?.capa}/>
                                 <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
                                     <Card.Title className='h5'>{jogos?.titulo}</Card.Title>
                                 </Card.Body>

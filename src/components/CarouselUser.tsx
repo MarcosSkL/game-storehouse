@@ -31,18 +31,20 @@ const CarouselUser = () => {
 
     };
     return (
-        <div className="p-4">
-            <h2 className="text-white text-2xl font-bold">Membros da Pagina</h2>
-            <Slider {...settings}>
-                {usuarios.map((item: any) => (
-                    <div key={item.id} className="p-2">
-                        <Link href={'usuarios/membros/' + item.id}>
-                        <img src={item.foto} width={1200} height={1800}  alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110 w-[250px] h-[250px]" />
-                        </Link>
-                    </div>
-                ))}
-            </Slider>
-        </div>
+        <>
+            <div className="m-4">
+                <h2 className="text-white text-2xl font-bold">Membros da Pagina</h2>
+                <Slider {...settings}>
+                    {usuarios.map((item: any) => (
+                        <div key={item.id} className="p-2">
+                            <Link href={'usuarios/membros/' + item.id}>
+                                <img src={item.foto} width={1200} height={1800} alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110 w-[250px] h-[250px]" />
+                            </Link>
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+        </>
     );
 
 }
