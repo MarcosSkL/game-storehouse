@@ -84,7 +84,7 @@ const Games = () => {
 
                         <Col md={4}>
                             <Card>
-                                <Card.Img variant="top" src={jogos?.capa}/>
+                                <Card.Img variant="top" src={jogos?.capa} />
                                 <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
                                     <Card.Title className='h5'>{jogos?.titulo}</Card.Title>
                                 </Card.Body>
@@ -121,11 +121,17 @@ const Games = () => {
                                                 <img src={item.foto} height={100} width={100} alt={item.usuario} />
                                                 <p className='text-xl font-bold'>{item.usuario}</p>
                                             </div>
-                                            <p className='flex gap-2 text-xl pb-5'>{item.comentario}
-                                                <AiOutlineDelete
+                                            <div className='flex gap-2 text-xl'>
+                                                <span>{item.comentario}</span>
+                                                <span> <AiOutlineDelete
                                                     onClick={() => excluir(item.id)}
                                                     type='submit'
-                                                    className='text-danger text-2xl' /></p>
+                                                    className='text-danger text-2xl' />
+                                                </span>
+                                            </div>
+                                            <div className='flex justify-end pb-5'>
+                                                {item.data}
+                                            </div>
                                         </div>
                                     ))}
                                 </Card.Body>

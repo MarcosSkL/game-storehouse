@@ -42,6 +42,8 @@ const Formulario = () => {
     const [jogos, setJogos] = useState<Jogos[]>([])
     const [selectedUserImage, setSelectedUserImage] = useState('');
 
+    const currentDate = new Date().toISOString().slice(0, 10);
+
     const handleUserChange = (event: any) => {
         const selectedUserName = event.target.value;
         const selectedUser = usuarios.find((item: any) => item.nome === selectedUserName);
@@ -157,7 +159,11 @@ const Formulario = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Data">
                                 <Form.Label>Data</Form.Label>
-                                <Form.Control type="date" placeholder="AAAA/MM/DD" {...register('data', gameValidator.reviews.data)} />
+                                <Form.Control
+                                    type="date"
+                                    placeholder="AAAA/MM/DD"
+                                    defaultValue={currentDate}
+                                    {...register('data', gameValidator.reviews.data)} />
                                 {
                                     errors.data &&
                                     <small className='text-red-700'>{errors.data.message}</small>
