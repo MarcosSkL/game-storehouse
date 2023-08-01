@@ -10,7 +10,7 @@ export default function Document() {
         <meta name='viewport' content='width=1000, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <body className="bg-[url('../../public/spider.png')] bg-cover bg-center">
+      <body className="bg-[url('../../public/backgroud.png')] bg-fixed bg-contain bg-center">
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"

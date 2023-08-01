@@ -31,18 +31,20 @@ const CarouselDevs = () => {
 
     };
     return (
-        <div className="p-4">
-            <h2 className="text-white text-2xl font-bold">Desenvolvedoras</h2>
-            <Slider {...settings}>
-                {desenvolvedoras.map((item: any) => (
-                    <div key={item.id} className="p-2">
-                        <Link href={'desenvolvedoras/info/' + item.id}>
-                        <img src={item.logo} width={9999} height={9999} alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110" />
-                        </Link>
-                    </div>
-                ))}
-            </Slider>
-        </div>
+        <>
+            <div className="m-4">
+                <h2 className="text-white text-2xl font-bold">Desenvolvedoras</h2>
+                <Slider {...settings}>
+                    {desenvolvedoras.map((item: any) => (
+                        <div key={item.id} className="p-2">
+                            <Link href={'desenvolvedoras/info/' + item.id}>
+                                <img src={item.logo} width={9999} height={9999} alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110" />
+                            </Link>
+                        </div>
+                    ))}
+                </Slider>
+            </div>
+        </>
     );
 
 }

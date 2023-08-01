@@ -47,6 +47,8 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
 
+    const currentDate = new Date().toISOString().slice(0, 10);
+
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
 
@@ -168,7 +170,11 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Data">
                                 <Form.Label>Data</Form.Label>
-                                <Form.Control type="date" placeholder="AAAA/MM/DD" {...register('data', gameValidator.reviews.data)} />
+                                <Form.Control
+                                    type="date"
+                                    placeholder="AAAA/MM/DD"
+                                    defaultValue={currentDate}
+                                    {...register('data', gameValidator.reviews.data)} readOnly />
                                 {
                                     errors.data &&
                                     <small className='text-red-700'>{errors.data.message}</small>

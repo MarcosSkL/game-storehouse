@@ -76,10 +76,10 @@ const Games = () => {
             <div>
                 <Header />
                 <div style={{ '--image-url': `url(${jogos?.background})` } as React.CSSProperties}
-                    className='p-60 bg-[image:var(--image-url)] bg-cover bg-center rounded-b-3xl'
+                    className='p-72 bg-[image:var(--image-url)] bg-cover bg-center rounded-b-3xl'
                 >
                 </div>
-                <div className='container -mt-[166px] text-slate-50'>
+                <div className='container -mt-[15rem] text-slate-50'>
                     <Row>
 
                         <Col md={4}>
@@ -121,11 +121,17 @@ const Games = () => {
                                                 <img src={item.foto} height={100} width={100} alt={item.usuario} />
                                                 <p className='text-xl font-bold'>{item.usuario}</p>
                                             </div>
-                                            <p className='flex gap-2 text-xl pb-5'>{item.comentario}
-                                                <AiOutlineDelete
+                                            <div className='flex gap-2 text-xl'>
+                                                <span>{item.comentario}</span>
+                                                <span> <AiOutlineDelete
                                                     onClick={() => excluir(item.id)}
                                                     type='submit'
-                                                    className='text-danger text-2xl' /></p>
+                                                    className='text-danger text-2xl' />
+                                                </span>
+                                            </div>
+                                            <div className='flex justify-end pb-5'>
+                                                {item.data}
+                                            </div>
                                         </div>
                                     ))}
                                 </Card.Body>
