@@ -44,6 +44,13 @@ const Games = () => {
         setReviews([...reviews, newReview]); // Adiciona a nova revisão à lista de revisões
     };
 
+    useEffect(() => {
+        if (id) {
+            // Verifique se o id existe
+            getAll(); // Chame a função getAll
+        }
+    }, [id]); // Use o id como dependência do useEffect
+
     async function getAll() {
         try {
             const jogos = await axios.get(`/api/jogos/${id}`); // Use o id na URL da API e aguarde a resposta
@@ -57,12 +64,16 @@ const Games = () => {
         }
     }
 
-    useEffect(() => {
-        if (id) {
-            // Verifique se o id existe
-            getAll(); // Chame a função getAll
+
+    function backgroundNota(nota: number) {
+        if (nota >= 80 && nota <= 99) {
+            return 'bg-green-900';
+        } else if (nota >= 40 && nota <= 79) {
+            return 'bg-yellow-500';
+        } else if (nota >= 0 && nota <= 39) {
+            return 'bg-red-600';
         }
-    }, [id]); // Use o id como dependência do useEffect
+    }
 
     function excluir(id: any) {
         if (confirm('Deseja excluir o registro?')) {
@@ -128,6 +139,9 @@ const Games = () => {
                                                     type='submit'
                                                     className='text-danger text-2xl' />
                                                 </span>
+                                            </div>
+                                            <div className='mt-2'>
+                                                <span className={`font-extrabold text-lg p-2 rounded-full ${backgroundNota(item.nota)}`}>{item.nota}</span>
                                             </div>
                                             <div className='flex justify-end pb-5'>
                                                 {item.data}
