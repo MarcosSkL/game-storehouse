@@ -68,6 +68,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
             getAll(); // Chame a função getAll
         }
     }, [id]); // Use o id como dependência do useEffect
+    
 
     function getAll() {
 
@@ -128,7 +129,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
 
                             <Form.Group className="mb-3" controlId="foto">
                                 <Form.Label>Foto</Form.Label>
-                                <Form.Control type="string" placeholder="foto" value={selectedUserImage} {...register('foto', gameValidator.reviews.foto)} readOnly />
+                                <Form.Control type="string" placeholder="foto" value={selectedUserImage} {...register('foto', gameValidator.reviews.foto)} readOnly/>
                                 {
                                     errors.foto &&
                                     <small className='text-red-700'>{errors.foto.message}</small>
@@ -152,6 +153,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                                 <Form.Label>Nota</Form.Label>
                                 <Form.Control
                                     type="text"
+                                    placeholder="0 a 99"
                                     mask="99"
                                     as={ReactInputMask}
                                     {...register('nota', gameValidator.reviews.nota)} />
@@ -169,12 +171,12 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                                 }
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Data">
-                                <Form.Label>Data</Form.Label>
+                                <Form.Label></Form.Label>
                                 <Form.Control
                                     type="date"
                                     placeholder="AAAA/MM/DD"
                                     defaultValue={currentDate}
-                                    {...register('data', gameValidator.reviews.data)} readOnly />
+                                    {...register('data', gameValidator.reviews.data)} readOnly hidden/>
                                 {
                                     errors.data &&
                                     <small className='text-red-700'>{errors.data.message}</small>
