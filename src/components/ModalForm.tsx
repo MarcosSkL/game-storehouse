@@ -1,4 +1,4 @@
-import ModalFormReview from '@/pages/reviews/ModalFormReview';
+import FormReview from '@/components/FormReview';
 import React, { useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5';
 
@@ -53,7 +53,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ onAddReview }) => {
                                 </div>
 
                                 <div className="p-6">
-                                    <ModalFormReview onSave={handleSaveReview} onCloseModal={handleCloseModal} />
+                                    <FormReview onSave={handleSaveReview} onCloseModal={handleCloseModal} />
                                 </div>
 
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
