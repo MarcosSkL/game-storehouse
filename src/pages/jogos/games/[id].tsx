@@ -10,7 +10,7 @@ import { AiOutlineDelete } from 'react-icons/ai'
 
 
 interface Jogos {
-    id: number;
+    id: string;
     titulo: string;
     desenvolvedora: string,
     plataforma: string,
@@ -21,6 +21,7 @@ interface Jogos {
 }
 
 interface Reviews {
+    id: string
     usuario: string,
     jogo: string,
     nota: number,
@@ -39,6 +40,8 @@ const Games = () => {
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
+
+    const gameID = id
 
     const handleAddReview = (newReview: any) => {
         setReviews([...reviews, newReview]); // Adiciona a nova revisão à lista de revisões
@@ -81,7 +84,7 @@ const Games = () => {
             getAll();
         }
     }
-
+  
     return (
         <>
             <div>
@@ -126,8 +129,8 @@ const Games = () => {
                             <Card>
                                 <Card.Body className='bg-gradient-to-r from-indigo-600 to-cyan-500 text-white'>
                                     <p className='text-center text-3xl'><strong>Reviews:</strong></p>
-                                    {reviews.filter(item => item.jogo == jogos?.titulo).map((item: any) => (
-                                        <div key={item.id}>
+                                    {reviews.filter(item => item.jogo === jogos?.titulo).map((item: any, index: number) => (
+                                        <div key={index}>
                                             <div className='flex items-baseline gap-3'>
                                                 <img src={item.foto} height={100} width={100} alt={item.usuario} />
                                                 <p className='text-xl font-bold'>{item.usuario}</p>
@@ -152,7 +155,7 @@ const Games = () => {
 
                             </Card>
 
-                            <ModalForm onAddReview={handleAddReview} />
+                            <ModalForm gameID={String(id)} onAddReview={handleAddReview} />
 
                         </Col>
                     </Row>
