@@ -10,7 +10,7 @@ import ReactInputMask from 'react-input-mask';
 import Image from 'next/image';
 
 interface FormValues {
-    id: number;
+    id: string;
     usuario: string;
     jogo: string;
     nota: number;
@@ -19,12 +19,12 @@ interface FormValues {
     foto: string;
 }
 interface Usuario {
-    id: number;
+    id: string;
     nome: string;
     foto: string;
 }
 interface Jogos {
-    id: number;
+    id: string;
     titulo: string;
     desenvolvedora: string;
     plataforma: string;
@@ -36,16 +36,17 @@ interface Jogos {
 interface ModalFormReviewProps {
     onSave: (dados: any) => void;
     onCloseModal: () => void;
+    gameID: string
 }
 
-const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal }) => {
+const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal, gameID }) => {
 
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
     const [jogos, setJogos] = useState<Jogos[]>([])
     const [selectedUserImage, setSelectedUserImage] = useState('');
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormValues>();
 
     const currentDate = new Date().toISOString().slice(0, 10);
 
@@ -68,7 +69,6 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
             getAll(); // Chame a função getAll
         }
     }, [id]); // Use o id como dependência do useEffect
-    
 
     function getAll() {
 
@@ -129,7 +129,14 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
 
                             <Form.Group className="mb-3" controlId="foto">
                                 <Form.Label>Foto</Form.Label>
-                                <Form.Control type="string" placeholder="foto" value={selectedUserImage} {...register('foto', gameValidator.reviews.foto)} readOnly/>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="foto"
+                                    defaultValue={selectedUserImage}
+                                    {...register('foto', gameValidator.reviews.foto)}
+                                    readOnly
+                                    
+                                />
                                 {
                                     errors.foto &&
                                     <small className='text-red-700'>{errors.foto.message}</small>
@@ -137,17 +144,19 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Jogo">
                                 <Form.Label>Jogo</Form.Label>
-                                <Form.Select placeholder="Jogo" {...register('jogo', gameValidator.reviews.jogo)}>
-                                    {
-                                        errors.jogo &&
-                                        <small className='text-red-700'>{errors.jogo.message}</small>
-                                    }
-                                    <option value="titulo">Selecione o Jogo</option>
-                                    {jogos.map((item: any) => (
-                                        <option key={item.id} value={item.titulo}>{item.titulo}</option>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Selecione o Jogo"
+                                    {...register('jogo', gameValidator.reviews.jogo)}
+                                    defaultValue={jogos.find(item => item.id === gameID)?.titulo || ''}
+                                    readOnly
+                                    
 
-                                    ))}
-                                </Form.Select>
+                                />
+                                {
+                                    errors.jogo &&
+                                    <small className='text-red-700'>{errors.jogo.message}</small>
+                                }
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Nota">
                                 <Form.Label>Nota</Form.Label>
@@ -156,7 +165,8 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                                     placeholder="0 a 99"
                                     mask="99"
                                     as={ReactInputMask}
-                                    {...register('nota', gameValidator.reviews.nota)} />
+                                    {...register('nota', gameValidator.reviews.nota)}
+                                />
                                 {
                                     errors.nota &&
                                     <small className='text-red-700'>{errors.nota.message}</small>
@@ -164,7 +174,13 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Comentario">
                                 <Form.Label>Comentario</Form.Label>
-                                <Form.Control as="textarea" rows={3} type="text" placeholder="Comentario" {...register('comentario', gameValidator.reviews.comentario)} />
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3}
+                                    type="text"
+                                    placeholder="Comentario"
+                                    {...register('comentario', gameValidator.reviews.comentario)}
+                                />
                                 {
                                     errors.comentario &&
                                     <small className='text-red-700'>{errors.comentario.message}</small>
@@ -176,7 +192,10 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                                     type="date"
                                     placeholder="AAAA/MM/DD"
                                     defaultValue={currentDate}
-                                    {...register('data', gameValidator.reviews.data)} readOnly hidden/>
+                                    {...register('data', gameValidator.reviews.data)}
+                                    readOnly
+                                    hidden
+                                />
                                 {
                                     errors.data &&
                                     <small className='text-red-700'>{errors.data.message}</small>
@@ -186,7 +205,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal 
                             <div className='flex gap-3 justify-center pb-5'>
                                 <button
                                     onClick={handleSubmit(salvar)}
-                                    type="button"
+                                    type="submit"
                                     className="bg-blue-500 text-white active:bg-blue-800 font-bold uppercase text-sm px-6 py-3 mt-2 rounded-lg shadow-black shadow-2xl hover:bg-blue-600 ease-linear transition-all duration-150"
                                 >
                                     <span className='flex items-center gap-2'>

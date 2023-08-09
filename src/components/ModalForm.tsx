@@ -1,16 +1,16 @@
-import ModalFormReview from '@/pages/reviews/ModalFormReview';
+import FormReview from '@/components/FormReview';
 import React, { useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5';
 
 interface ModalFormProps {
     onAddReview: (newReview: any) => void;
+    gameID: string
 }
 
-const ModalForm: React.FC<ModalFormProps> = ({ onAddReview }) => {
+const ModalForm: React.FC<ModalFormProps> = ({ onAddReview, gameID }) => {
 
     const [showModal, setShowModal] = useState(false);
-
-
+    
 
     const handleSaveReview = (dados: any) => {
 
@@ -22,7 +22,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ onAddReview }) => {
     const handleCloseModal = () => {
         setShowModal(false);
     };
-
+   
     return (
 
         <>
@@ -53,7 +53,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ onAddReview }) => {
                                 </div>
 
                                 <div className="p-6">
-                                    <ModalFormReview onSave={handleSaveReview} onCloseModal={handleCloseModal} />
+                                    <FormReview gameID={gameID} onSave={handleSaveReview} onCloseModal={handleCloseModal} />
                                 </div>
 
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
