@@ -17,10 +17,10 @@ const Header = () => {
     return (
 
         <>
-            <header className='sticky top-0 left-0 right-0 ps-5 z-10 font-bold flex justify-between items-center bg-gradient-to-r from-black via-sky-950 to-sky-900'>
+            <header className='sticky top-0 left-0 right-0 px-3 z-10 font-bold flex justify-between items-center bg-gradient-to-r from-black via-sky-950 to-sky-900'>
 
                 <div className='flex items-center gap-6'>
-                    <IoMenu className='h-14 w-12 cursor-pointer text-white' onClick={handleShow} />
+                    <IoMenu className='text-7xl sm:text-5xl cursor-pointer text-white' onClick={handleShow} />
                     <Offcanvas show={show} onHide={handleClose}>
                         <Offcanvas.Header closeButton className='bg-slate-800'>
                             <Offcanvas.Title><p className='no-underline text-white'>Editar Campos</p></Offcanvas.Title>
@@ -35,12 +35,12 @@ const Header = () => {
                     </Offcanvas>
                     <Link href={"/"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
                 </div>
-                <div className='pe-20'>
-                    <div className="absolute focus:pointer-events-auto">
-                        <IoSearch className="absolute text-slate-400 h-8 w-6 ms-1" />
-                    </div>
+                <div className='flex items-center'>
+
+                    <IoSearch className="absolute text-slate-400 text-2xl sm:text-3xl" />
+
                     <input
-                        className="rounded-3xl w-[15rem] md:w-[25rem] bg-gray-200 outline-none py-1 px-40 text-lg focus:px-7  focus: duration-500"
+                        className="rounded-3xl bg-gray-200 outline-none py-1 px-4 text-xs sm:text-lg focus:px-7  focus: duration-500"
                         type="text"
                         placeholder="Procurar"
                     />
