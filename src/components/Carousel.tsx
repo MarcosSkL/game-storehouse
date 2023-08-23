@@ -29,7 +29,32 @@ const Carousel = () => {
         autoplaySpeed: 4000,
         slidesToShow: 1,
         slidesToScroll: 1,
-
+        responsive: [
+            {
+                breakpoint: 400,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 1
+                },
+            },
+        ],
         appendDots: (dots: any) => (
             <div
                 style={{
@@ -46,7 +71,7 @@ const Carousel = () => {
         beforeChange: (next) => setCurrentSlide(next),
         customPaging: (i) => (
             <div
-                className={`w-3 h-3 mx-0 rounded-full ${i === currentSlide ? "bg-slate-50" : "bg-slate-500"
+                className={`w-2 h-2 rounded-full ${i === currentSlide ? "bg-slate-50" : "bg-slate-500"
                     }`}
             ></div>
         ),
@@ -57,9 +82,17 @@ const Carousel = () => {
                 <Slider {...settings}>
                     {jogos.map((item: any) => (
                         <div key={item.id} className="p-2">
-                            <img src={item.background} width={1920} height={1200} alt={"Background " + item.titulo} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-95 h-screen w-full object-fill" />
+                            <img
+                                src={item.background}
+                                width={1920}
+                                height={1200}
+                                alt={"Background " + item.titulo}
+                                className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-95 object-cover responsive"
+                            />
                             <div className='absolute bottom-[80px] text-white px-3 pl-[28px] sm:pl-[36px] md:pl-[48px] lg:pl-[60px] w-screen'>
-                                <h2 className='font-bold text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl mb-3 me-60'>{item.titulo}</h2>
+                                <h2 className='font-bold text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl mb-3 me-60'>
+                                    {item.titulo}
+                                </h2>
                                 <p className='sm:text-left sm:pr-4 sm:mb-6 text-ellipsis overflow-hidden md:text-lg'>{item.desenvolvedora}</p>
                                 <div className=' gap-5 items-center hidden sm:flex'>
                                     <Link href={'jogos/games/' + item.id}>

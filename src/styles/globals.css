@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (min-width: 640px) {
+  .responsive {
+    @apply h-screen w-screen;
+  }
+}
+
+@media (max-width: 639px) {
+  .responsive {
+    @apply h-auto w-auto;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 4px;
