@@ -14,7 +14,7 @@ const Wellcome = () => {
                         Se quiser compartilhar a sua experiência, é só deixar um comentário</span>
                 </div>
                 <div className="text-center">
-                    <Link className="no-underline shadow-2xl rounded-full shadow-zinc-950 font-bold text-white ml-8 sm:ml-11 bg-slate-400 hover:bg-slate-500 px-10 py-3"
+                    <Link className="px-6 sm:px-10 py-3 no-underline shadow-2xl rounded-full shadow-zinc-950 font-bold text-white ml-8 sm:ml-11 bg-slate-400 hover:bg-slate-500"
                         target='_blanck'
                         href="https://github.com/MarcosSkL"
                     >
@@ -22,7 +22,7 @@ const Wellcome = () => {
 
                     </Link>
                     <Link
-                        className="no-underline shadow-2xl rounded-full shadow-zinc-950 font-bold text-white ml-8 sm:ml-11 bg-sky-400 hover:bg-sky-500 px-10 py-3"
+                        className="px-6 sm:px-10 py-3 no-underline shadow-2xl rounded-full shadow-zinc-950 font-bold text-white ml-8 sm:ml-11 bg-sky-400 hover:bg-sky-500"
                         target='_blanck'
                         href="https://github.com/MarcosSkL/gamestore"
                     >
