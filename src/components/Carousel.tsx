@@ -87,7 +87,7 @@ const Carousel = () => {
                                 width={1920}
                                 height={1200}
                                 alt={"Background " + item.titulo}
-                                className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-95 object-cover responsive"
+                                className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-105 object-cover responsive"
                             />
                             <div className='absolute bottom-[80px] text-white px-3 pl-[28px] sm:pl-[36px] md:pl-[48px] lg:pl-[60px] w-screen'>
                                 <h2 className='font-bold text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl mb-3 me-60'>

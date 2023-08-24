@@ -27,7 +27,34 @@ const CarouselUser = () => {
         infinite: true,
         centerPadding: "60px",
         slidesToShow: 7,
-        speed: 500
+        slidesToScroll: 1,
+        speed: 500,
+        responsive: [
+            {
+                breakpoint: 400,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 4
+                },
+            },
+        ],
 
     };
     return (
@@ -38,7 +65,13 @@ const CarouselUser = () => {
                     {usuarios.map((item: any) => (
                         <div key={item.id} className="p-2">
                             <Link href={'usuarios/membros/' + item.id}>
-                                <img src={item.foto} width={1200} height={1800} alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110 w-[250px] h-[250px]" />
+                                <img
+                                    src={item.foto}
+                                    width={1920}
+                                    height={1200}
+                                    alt={"Foto " + item.nome}
+                                    className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110"
+                                />
                             </Link>
                         </div>
                     ))}

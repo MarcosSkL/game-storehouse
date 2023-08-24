@@ -10,7 +10,7 @@
 
 @media (max-width: 639px) {
   .responsive {
-    @apply h-auto w-auto;
+    @apply h-80 w-auto;
   }
 }
 
