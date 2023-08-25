@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Button, Card, Col, Row, Table, Form } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
@@ -35,11 +35,10 @@ interface Jogos {
 }
 interface ModalFormReviewProps {
     onSave: (dados: any) => void;
-    onCloseModal: () => void;
     gameID: string
 }
 
-const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal, gameID }) => {
+const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
 
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
@@ -49,6 +48,23 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal,
     const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormValues>();
 
     const currentDate = new Date().toISOString().slice(0, 10);
+    
+   
+   
+        const fetchData = async () => {
+          try {
+            const selectImg = await selectedUserImage; // Função que busca a imagem do usuário
+            const jogoTitle = await jogos.find(item => item.id === gameID)?.titulo || ''; // Função que busca o título do jogo
+      
+            setValue('foto', selectImg);
+            setValue('jogo', jogoTitle);
+          } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+          }
+        };
+      
+        fetchData();
+   
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
@@ -89,7 +105,6 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal,
 
         await axios.post('/api/reviews', dados)
         onSave(dados) // Chame a função onSave passando os dados para o ModalForm
-        onCloseModal()
 
     }
 
@@ -97,9 +112,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal,
         <>
 
             <div className='container'>
-                <Row>
-                    <span className='text-3xl p-2 justify-center flex mb-2 rounded-full font-bold text-white px-3'>Inserir Review</span>
-                </Row>
+
                 <Row className="px-1 mx-1">
                     <Col>
                         <div className='flex justify-center'>
@@ -112,6 +125,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal,
                                     placeholder="Usuario"
                                     {...register('usuario', gameValidator.reviews.usuario)}
                                     onChange={handleUserChange}
+
 
                                 >
                                     {
@@ -128,14 +142,16 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal,
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="foto">
-                                <Form.Label>Foto</Form.Label>
+                                <Form.Label></Form.Label>
                                 <Form.Control
+                                    autoFocus
                                     type="text"
                                     placeholder="foto"
-                                    defaultValue={selectedUserImage}
+                                    hidden
                                     {...register('foto', gameValidator.reviews.foto)}
                                     readOnly
-                                    
+
+
                                 />
                                 {
                                     errors.foto &&
@@ -143,14 +159,14 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, onCloseModal,
                                 }
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Jogo">
-                                <Form.Label>Jogo</Form.Label>
+                                <Form.Label></Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Selecione o Jogo"
                                     {...register('jogo', gameValidator.reviews.jogo)}
-                                    defaultValue={jogos.find(item => item.id === gameID)?.titulo || ''}
+                                    hidden
                                     readOnly
-                                    
+
 
                                 />
                                 {

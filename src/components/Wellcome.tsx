@@ -8,7 +8,7 @@ const Wellcome = () => {
                 <div className="text-4xl sm:text-8xl mb-10 py-5 mx-2 sm:mx-[1rem] shadow-2xl rounded-full shadow-zinc-950 text-center font-extrabold text-white bg-gradient-to-r from-indigo-600 to-cyan-500 ">
                     Bem vindo a SK GameStore
                 </div>
-                <div className="text-base sm:text-2xl mx-2 font-mono font-semibold pb-11 text-slate-200 text-center">
+                <div className="text-xl sm:text-2xl mx-2 font-mono font-semibold pb-11 text-slate-200 text-center">
                     <span>reviews de jogos que te ajuda a escolher os melhores títulos para o seu estilo.<br />
                         leia as nossas resenhas e descubra novas formas de se divertir.<br />
                         Se quiser compartilhar a sua experiência, é só deixar um comentário</span>
