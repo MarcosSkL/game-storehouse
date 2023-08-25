@@ -26,8 +26,35 @@ const CarouselDevs = () => {
         centerMode: true,
         infinite: true,
         centerPadding: "60px",
-        slidesToShow: 8,
-        speed: 500
+        slidesToShow: 7,
+        slidesToScroll: 1,
+        speed: 500,
+        responsive: [
+            {
+                breakpoint: 400,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 800,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 4
+                },
+            },
+        ],
 
     };
     return (
@@ -38,7 +65,13 @@ const CarouselDevs = () => {
                     {desenvolvedoras.map((item: any) => (
                         <div key={item.id} className="p-2">
                             <Link href={'desenvolvedoras/info/' + item.id}>
-                                <img src={item.logo} width={9999} height={9999} alt={"Foto " + item.nome} className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110" />
+                                <img
+                                    src={item.logo}
+                                    width={1920}
+                                    height={1200}
+                                    alt={"Foto " + item.nome}
+                                    className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110"
+                                />
                             </Link>
                         </div>
                     ))}
