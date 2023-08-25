@@ -25,7 +25,7 @@ const CarouselDevs = () => {
         className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "60px",
+        centerPadding: "10px",
         slidesToShow: 7,
         slidesToScroll: 1,
         speed: 500,
@@ -33,13 +33,13 @@ const CarouselDevs = () => {
             {
                 breakpoint: 400,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                 },
             },
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                 },
             },
             {
@@ -70,7 +70,7 @@ const CarouselDevs = () => {
                                     width={1920}
                                     height={1200}
                                     alt={"Foto " + item.nome}
-                                    className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110"
+                                    className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110 w-full h-16 sm:h-28 object-fill"
                                 />
                             </Link>
                         </div>

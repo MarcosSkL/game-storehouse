@@ -90,7 +90,7 @@ const Games = () => {
             <div>
                 <Header />
                 <div style={{ '--image-url': `url(${jogos?.background})` } as React.CSSProperties}
-                    className='p-72 bg-[image:var(--image-url)] bg-cover bg-center rounded-b-3xl'
+                    className='py-72 bg-[image:var(--image-url)] bg-cover bg-center rounded-b-3xl'
                 >
                 </div>
                 <div className='container -mt-[15rem] text-slate-50'>

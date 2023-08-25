@@ -26,21 +26,21 @@ const CarouselSmall = () => {
         className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "60px",
-        slidesToShow: 7,
+        centerPadding: "15px",
+        slidesToShow: 6,
         slidesToScroll: 1,
         speed: 500,
         responsive: [
             {
                 breakpoint: 400,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                 },
             },
             {
                 breakpoint: 600,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                 },
             },
             {
@@ -70,7 +70,7 @@ const CarouselSmall = () => {
                                     width={1920}
                                     height={1200}
                                     alt={"Background " + item.titulo}
-                                    className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110"
+                                    className="rounded-lg shadow-2xl shadow-black transition duration-500 ease-in-out hover:scale-110 w-full h-40 sm:h-full"
                                 />
                             </Link>
                         </div>
