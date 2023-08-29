@@ -45,7 +45,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
     const [jogos, setJogos] = useState<Jogos[]>([])
     const [selectedUserImage, setSelectedUserImage] = useState('');
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormValues>();
+    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<FormValues>();
 
     const currentDate = new Date().toISOString().slice(0, 10);
 
@@ -105,7 +105,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
 
         await axios.post('/api/reviews', dados)
         onSave(dados) // Chame a função onSave passando os dados para o ModalForm
-
+        reset()
     }
 
     return (
@@ -123,7 +123,7 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
                             <Form.Label></Form.Label>
                             <Form.Control
                                 as="textarea"
-                                rows={3}
+                                rows={5}
                                 type="text"
                                 placeholder="Comentario"
                                 {...register('comentario', gameValidator.reviews.comentario)}
