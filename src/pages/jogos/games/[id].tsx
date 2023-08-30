@@ -84,7 +84,7 @@ const Games = () => {
             getAll();
         }
     }
-  
+
     return (
         <>
             <div>
@@ -151,11 +151,13 @@ const Games = () => {
                                             </div>
                                         </div>
                                     ))}
+                                    <div className=''>
+                                        <ModalForm gameID={String(id)} onAddReview={handleAddReview} />
+                                    </div>
                                 </Card.Body>
 
                             </Card>
 
-                            <ModalForm gameID={String(id)} onAddReview={handleAddReview} />
 
                         </Col>
                     </Row>

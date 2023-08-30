@@ -45,26 +45,26 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
     const [jogos, setJogos] = useState<Jogos[]>([])
     const [selectedUserImage, setSelectedUserImage] = useState('');
 
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormValues>();
+    const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<FormValues>();
 
     const currentDate = new Date().toISOString().slice(0, 10);
-    
-   
-   
-        const fetchData = async () => {
-          try {
+
+
+
+    const fetchData = async () => {
+        try {
             const selectImg = await selectedUserImage; // Função que busca a imagem do usuário
             const jogoTitle = await jogos.find(item => item.id === gameID)?.titulo || ''; // Função que busca o título do jogo
-      
+
             setValue('foto', selectImg);
             setValue('jogo', jogoTitle);
-          } catch (error) {
+        } catch (error) {
             console.error('Erro ao buscar dados:', error);
-          }
-        };
-      
-        fetchData();
-   
+        }
+    };
+
+    fetchData();
+
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
@@ -105,19 +105,34 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
 
         await axios.post('/api/reviews', dados)
         onSave(dados) // Chame a função onSave passando os dados para o ModalForm
-
+        reset()
     }
 
     return (
         <>
 
-            <div className='container'>
+            <div>
 
-                <Row className="px-1 mx-1">
+                <Row>
                     <Col>
                         <div className='flex justify-center'>
                             {selectedUserImage && <img src={selectedUserImage} height={100} width={100} alt="Selected user" />}
                         </div>
+
+                        <Form.Group className="mb-3" controlId="Comentario">
+                            <Form.Label></Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={5}
+                                type="text"
+                                placeholder="Comentario"
+                                {...register('comentario', gameValidator.reviews.comentario)}
+                            />
+                            {
+                                errors.comentario &&
+                                <small className='text-red-700'>{errors.comentario.message}</small>
+                            }
+                        </Form.Group>
                         <Form className='text-white font-bold'>
                             <Form.Group className="mb-3" controlId="Usuario">
                                 <Form.Label>Usuario</Form.Label>
@@ -141,14 +156,29 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
                                 </Form.Select>
                             </Form.Group>
 
+
+                            <Form.Group className="mb-3" controlId="Nota">
+                                <Form.Label>Nota</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="0 a 99"
+                                    mask="99"
+                                    as={ReactInputMask}
+                                    {...register('nota', gameValidator.reviews.nota)}
+                                />
+                                {
+                                    errors.nota &&
+                                    <small className='text-red-700'>{errors.nota.message}</small>
+                                }
+                            </Form.Group>
                             <Form.Group className="mb-3" controlId="foto">
                                 <Form.Label></Form.Label>
                                 <Form.Control
                                     autoFocus
                                     type="text"
                                     placeholder="foto"
-                                    hidden
                                     {...register('foto', gameValidator.reviews.foto)}
+                                    hidden
                                     readOnly
 
 
@@ -172,34 +202,6 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
                                 {
                                     errors.jogo &&
                                     <small className='text-red-700'>{errors.jogo.message}</small>
-                                }
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="Nota">
-                                <Form.Label>Nota</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="0 a 99"
-                                    mask="99"
-                                    as={ReactInputMask}
-                                    {...register('nota', gameValidator.reviews.nota)}
-                                />
-                                {
-                                    errors.nota &&
-                                    <small className='text-red-700'>{errors.nota.message}</small>
-                                }
-                            </Form.Group>
-                            <Form.Group className="mb-3" controlId="Comentario">
-                                <Form.Label>Comentario</Form.Label>
-                                <Form.Control
-                                    as="textarea"
-                                    rows={3}
-                                    type="text"
-                                    placeholder="Comentario"
-                                    {...register('comentario', gameValidator.reviews.comentario)}
-                                />
-                                {
-                                    errors.comentario &&
-                                    <small className='text-red-700'>{errors.comentario.message}</small>
                                 }
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Data">
