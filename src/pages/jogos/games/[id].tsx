@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Button, Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
-import ModalForm from '@/components/ModalForm'
+import BoxForm from '@/components/BoxForm'
 import { AiOutlineDelete } from 'react-icons/ai'
 
 
@@ -40,8 +40,6 @@ const Games = () => {
 
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
-
-    const gameID = id
 
     const handleAddReview = (newReview: any) => {
         setReviews([...reviews, newReview]); // Adiciona a nova revisão à lista de revisões
@@ -152,7 +150,7 @@ const Games = () => {
                                         </div>
                                     ))}
                                     <div className=''>
-                                        <ModalForm gameID={String(id)} onAddReview={handleAddReview} />
+                                        <BoxForm gameID={String(id)} onAddReview={handleAddReview} />
                                     </div>
                                 </Card.Body>
 

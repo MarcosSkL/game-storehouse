@@ -7,25 +7,25 @@ import { Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import Slider from 'react-slick'
 
-const Info = () => {
+interface Desenvolvedores {
+    id: number;
+    nome: string;
+    logo: string;
+    pais: string;
+    fundacao: string;
+}
+interface Jogos {
+    id: number;
+    titulo: string;
+    desenvolvedora: string,
+    plataforma: string,
+    genero: string,
+    sinopse: string,
+    capa: string,
+    background: string
+}
 
-    interface Desenvolvedores {
-        id: number;
-        nome: string;
-        logo: string;
-        pais: string;
-        fundacao: string;
-    }
-    interface Jogos {
-        id: number;
-        titulo: string;
-        desenvolvedora: string,
-        plataforma: string,
-        genero: string,
-        sinopse: string,
-        capa: string,
-        background: string
-    }
+const Info = () => {
 
     const [desenvolvedoras, setDesenvolvedoras] = useState<Desenvolvedores | null>(null)
     const [jogos, setJogos] = useState<Jogos[]>([])
