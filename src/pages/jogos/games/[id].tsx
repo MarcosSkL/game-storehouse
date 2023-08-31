@@ -41,8 +41,6 @@ const Games = () => {
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
 
-    const gameID = id
-
     const handleAddReview = (newReview: any) => {
         setReviews([...reviews, newReview]); // Adiciona a nova revisão à lista de revisões
     };
