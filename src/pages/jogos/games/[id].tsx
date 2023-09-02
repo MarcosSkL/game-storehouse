@@ -66,16 +66,6 @@ const Games = () => {
     }
 
 
-    function backgroundNota(nota: number) {
-        if (nota >= 80 && nota <= 99) {
-            return 'bg-green-900';
-        } else if (nota >= 40 && nota <= 79) {
-            return 'bg-yellow-500';
-        } else if (nota >= 0 && nota <= 39) {
-            return 'bg-red-600';
-        }
-    }
-
     function excluir(id: any) {
         if (confirm('Deseja excluir o registro?')) {
             axios.delete(`/api/reviews/${id}`);
@@ -171,3 +161,13 @@ const Games = () => {
 }
 
 export default Games
+
+export function backgroundNota(nota: number) {
+    if (nota >= 80 && nota <= 99) {
+        return 'bg-green-900';
+    } else if (nota >= 40 && nota <= 79) {
+        return 'bg-yellow-500';
+    } else if (nota >= 0 && nota <= 39) {
+        return 'bg-red-600';
+    }
+}

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
+import { backgroundNota } from '@/pages/jogos/games/[id]'
 
 interface Reviews {
     id: string
@@ -49,15 +50,6 @@ const Membros = () => {
         }
     }, [id]) // Use o id como dependência do useEffect
 
-    function backgroundNota(nota: number) {
-        if (nota >= 80 && nota <= 99) {
-            return 'bg-green-900';
-        } else if (nota >= 40 && nota <= 79) {
-            return 'bg-yellow-500';
-        } else if (nota >= 0 && nota <= 39) {
-            return 'bg-red-600';
-        }
-    }
 
     return (
         <>
