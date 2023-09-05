@@ -38,7 +38,7 @@ interface ModalFormReviewProps {
     gameID: string
 }
 
-const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
+const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
 
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
@@ -52,12 +52,14 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
 
 
     const fetchData = async () => {
+      
         try {
             const selectImg = await selectedUserImage; // Função que busca a imagem do usuário
             const jogoTitle = await jogos.find(item => item.id === gameID)?.titulo || ''; // Função que busca o título do jogo
 
             setValue('foto', selectImg);
-            setValue('jogo', jogoTitle);
+            setValue('jogo', jogoTitle);  
+            
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
         }
@@ -245,4 +247,4 @@ const ModalFormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => 
     )
 }
 
-export default ModalFormReview
+export default FormReview
