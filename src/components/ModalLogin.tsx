@@ -75,7 +75,7 @@ const ModalLogin = () => {
                 <div className='ms-3'>
                     <Link href="/usuarios/form">
                         <Button variant='info' className='text-white'>
-                            <div className='flex gap-2 items-center mx-[142px]'>
+                            <div className='flex gap-2 items-center mx-auto'>
                                 <FcKey className='text-2xl' />
                                 Cadastrar Úsuario
                             </div>
