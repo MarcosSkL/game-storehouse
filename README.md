@@ -27,25 +27,24 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 - Você instalou a versão mais recente de `NodeJS`
 - Você tem uma máquina `Windows / Linux / Mac`
 
-## 🚀 Instalando saiba_politico>
+## 🚀 Instalando
 
-Para instalar o saiba_politico, siga estas etapas:
+Para instalar o game-storehouse, siga estas etapas:
 ```
 npm i
 ```
 
-## ☕ Usando Saiba_Politico
+## ☕ Usando Game-Store_House
 
-Para usar saiba_politico, siga estas etapas:
+Para usar game-storehouse, siga estas etapas:
 
 ```
 npm run dev
 ```
 
-## 📫 Contribuindo para Saiba_Politico
+## 📫 Contribuindo para Game-Storehouse 
 
-Para contribuir com Saiba Politico, siga estas etapas:
-
+Para contribuir com Game StoreHouse, siga estas etapas:
 1. Bifurque este repositório.
 2. Crie um branch: `git checkout -b <nome_branch>`.
 3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
