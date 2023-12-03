@@ -1,20 +1,20 @@
 # Game StoreHouse 🎮
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/README-template?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/MarcosSkL/README-template?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/MarcosSkL/README-template?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/MarcosSkL/README-template?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/MarcosSkL/README-template?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/MarcosSkL/README-template?style=for-the-badge)
 
-<img src="" alt="Exemplo imagem">
+<img src="https://github.com/MarcosSkL/portifolioweb/blob/Main/public/assets/Projetos/SKgames.png?raw=true" alt="Print site">
 
 
 ## 💼 Tecnologias utilizadas
 
-- Javascript;
+- Typescript;
+- NextJS;
 - Tailwind CSS;
 - Bootstrap;
-- NextJS;
 - Google Charts;
 
 ---
