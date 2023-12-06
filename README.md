@@ -15,7 +15,7 @@
 - NextJS;
 - Tailwind CSS;
 - Bootstrap;
-- Google Charts;
+- Firebase
 
 ---
 
