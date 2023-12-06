@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap'
+import Link from 'next/link';
 import { IoLogInSharp } from 'react-icons/io5';
 import { FcGoogle, FcKey } from 'react-icons/fc';
 import { GoogleAuthProvider, User, signInWithPopup } from 'firebase/auth'
-import { auth } from '@/services/firebase';
-import Link from 'next/link';
+import { getAuth } from "firebase/auth"
+import firebase from '../services/firebase'
+
 
 
 
@@ -16,7 +18,7 @@ const ModalLogin = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
+    const auth = getAuth(firebase);
 
     function handleGoogleAuth() {
         const provider = new GoogleAuthProvider();
