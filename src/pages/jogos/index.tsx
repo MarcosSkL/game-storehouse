@@ -6,6 +6,7 @@ import axios from 'axios'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Default from '../../../public/default.jpg'
+import withAuth from '@/components/Hoc'
 
 const Index = () => {
 
@@ -122,4 +123,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default withAuth(Index)
