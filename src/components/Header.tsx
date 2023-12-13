@@ -4,6 +4,7 @@ import { IoSearch, IoMenu } from 'react-icons/io5'
 import Image from 'next/image'
 import { Offcanvas } from 'react-bootstrap'
 import Link from 'next/link'
+import User from './User'
 
 
 const Header = () => {
@@ -45,7 +46,7 @@ const Header = () => {
                     />
                 </div>
                 <div className='me-5'>
-                    <p>USUARIO</p>
+                    <User />
                 </div>
 
             </header>
