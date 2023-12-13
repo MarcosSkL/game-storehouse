@@ -8,6 +8,7 @@ import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import withAuth from '@/components/Hoc';
 
 const Formulario = () => {
 
@@ -81,4 +82,4 @@ const Formulario = () => {
     )
 }
 
-export default Formulario
+export default withAuth(Formulario)

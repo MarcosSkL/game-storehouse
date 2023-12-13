@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import Slider from 'react-slick'
+import withAuth from '@/components/Hoc'
 
 interface Desenvolvedores {
     id: number;
@@ -123,4 +124,4 @@ const Info = () => {
     )
 }
 
-export default Info
+export default withAuth(Info)

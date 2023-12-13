@@ -8,6 +8,7 @@ import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import withAuth from '@/components/Hoc';
 
 const FormAlterJogos = () => {
 
@@ -176,4 +177,4 @@ const FormAlterJogos = () => {
     )
 }
 
-export default FormAlterJogos
+export default withAuth(FormAlterJogos)

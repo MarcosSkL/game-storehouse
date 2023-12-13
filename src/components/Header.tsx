@@ -32,7 +32,7 @@ const Header = () => {
                             <p><Link href='/generos' className='no-underline text-lg font-semibold font-serif text-slate-200 text-current hover:text-gray-400'>Gêneros</Link></p>
                         </Offcanvas.Body>
                     </Offcanvas>
-                    <Link href={"/"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
+                    <Link href={"/home"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
                 </div>
                 <div className='flex items-center'>
 

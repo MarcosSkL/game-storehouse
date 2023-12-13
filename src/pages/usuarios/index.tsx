@@ -6,6 +6,7 @@ import axios from 'axios'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
+import withAuth from '@/components/Hoc'
 
 const Index = () => {
 
@@ -109,4 +110,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default withAuth(Index)

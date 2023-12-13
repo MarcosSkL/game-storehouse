@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import { backgroundNota } from '@/pages/jogos/games/[id]'
+import withAuth from '@/components/Hoc'
 
 interface Reviews {
     id: string
@@ -105,4 +106,4 @@ const Membros = () => {
     )
 }
 
-export default Membros
+export default withAuth(Membros)
