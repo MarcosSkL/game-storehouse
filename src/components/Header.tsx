@@ -4,7 +4,6 @@ import { IoSearch, IoMenu } from 'react-icons/io5'
 import Image from 'next/image'
 import { Offcanvas } from 'react-bootstrap'
 import Link from 'next/link'
-import ModalLogin from './ModalLogin'
 
 
 const Header = () => {
@@ -46,7 +45,7 @@ const Header = () => {
                     />
                 </div>
                 <div className='me-5'>
-                    <ModalLogin />
+                    <p>USUARIO</p>
                 </div>
 
             </header>

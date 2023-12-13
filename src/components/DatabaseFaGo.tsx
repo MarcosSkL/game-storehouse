@@ -1,6 +1,6 @@
 import { getDatabase, ref, set } from 'firebase/database';
 
-export const dataInRealtimeDB = async (userData: any) => {
+export const dataInRealtimeFaGoDB = async (userData: any) => {
    const db = getDatabase();
    const userRef = ref(db, 'users/' + userData.uid);
 

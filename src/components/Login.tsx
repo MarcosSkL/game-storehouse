@@ -1,10 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { getAuth, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-import firebase from '../services/firebase';
+import { getAuth, FacebookAuthProvider, signInWithPopup, GoogleAuthProvider  } from "firebase/auth";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { dataInRealtimeDB } from '../components/Database';
+import { dataInRealtimeFaGoDB } from './DatabaseFaGo';
+import firebase from '../services/firebase';
 
 const Login = () => {
 
@@ -18,7 +18,7 @@ const Login = () => {
             console.log(result);
 
             const user = result.user;
-            await dataInRealtimeDB(user);
+            await dataInRealtimeFaGoDB(user);
 
             router.push('/home')
 
@@ -27,6 +27,22 @@ const Login = () => {
             console.error(error);
          });
    }
+
+   const signInWithGoogle = () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+         .then(async (result) => {
+            console.log(result);
+   
+            const user = result.user;
+            await dataInRealtimeFaGoDB(user);
+   
+            router.push('/home')
+         })
+         .catch((error) => {
+            console.error(error);
+         });
+   };
 
    return (
       <>
@@ -62,7 +78,7 @@ const Login = () => {
                               <button
                                  type="button"
                                  className='flex gap-1 text-lg items-center transition duration-100 ease-in-out hover:shadow-2xl hover:shadow-white'
-                                 onClick={signInWithFacebook}
+                                 onClick={signInWithGoogle}
                               >
                                  <FcGoogle className="text-2xl" />
                                  <span className='text-red-500 font-bold text-xl'>o</span><span className='text-yellow-500 font-bold text-xl'>o</span><span className='text-blue-500 font-bold text-xl'>g</span><span className='text-green-500 font-bold text-xl'>l</span><span className='text-red-500 font-bold text-xl'>e</span>
@@ -111,7 +127,7 @@ const Login = () => {
                         <div className="text-center lg:text-left">
                            <button
                               type="button"
-                              className="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-sm transition duration-150 ease-in-out hover:shadow-xl"
+                              className="inline-block rounded bg-blue-500 px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white stransition duration-150 ease-in-out hover:shadow-2xl hover:shadow-white"
                            >
                               Login
                            </button>
