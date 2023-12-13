@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import { getAuth, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import firebase from '../services/firebase';
 import { FaFacebook } from "react-icons/fa";
-import { dataInRealtimeDB }  from '../components/Database';
+import { FcGoogle } from "react-icons/fc";
+import { dataInRealtimeDB } from '../components/Database';
 
 const Login = () => {
 
@@ -30,7 +31,7 @@ const Login = () => {
    return (
       <>
          <section className="h-screen container">
-            <div className="h-full">
+            <div className="h-full text-white">
 
                <div
                   className="flex h-full flex-wrap items-center justify-center lg:justify-between">
@@ -46,19 +47,27 @@ const Login = () => {
                   <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
                      <form>
 
-                        <div
-                           className="flex flex-row items-center justify-center lg:justify-start">
+                        <div className="flex flex-row items-center justify-center lg:justify-start">
                            <p className="mb-0 mr-4 text-lg">Entrar com</p>
+                           <div className='flex gap-4'>
+                              <button
+                                 type="button"
+                                 className='flex gap-1 text-lg items-center transition duration-100 ease-in-out hover:shadow-2xl hover:shadow-white'
+                                 onClick={signInWithFacebook}
+                              >
+                                 <span className='text-blue-500 font-bold text-xl'>facebook</span>
+                                 <FaFacebook className="text-blue-500 text-2xl" />
+                              </button>
 
-
-                           <button
-                              type="button"
-                              className='flex gap-1 text-lg items-center transition duration-150 ease-linear hover:shadow-xl'
-                              onClick={signInWithFacebook}
-                           >
-                              <span className='text-blue-500 font-bold'>facebook</span>
-                              <FaFacebook className="text-blue-500 text-xl" />
-                           </button>
+                              <button
+                                 type="button"
+                                 className='flex gap-1 text-lg items-center transition duration-100 ease-in-out hover:shadow-2xl hover:shadow-white'
+                                 onClick={signInWithFacebook}
+                              >
+                                 <FcGoogle className="text-2xl" />
+                                 <span className='text-red-500 font-bold text-xl'>o</span><span className='text-yellow-500 font-bold text-xl'>o</span><span className='text-blue-500 font-bold text-xl'>g</span><span className='text-green-500 font-bold text-xl'>l</span><span className='text-red-500 font-bold text-xl'>e</span>
+                              </button>
+                           </div>
 
                         </div>
 
