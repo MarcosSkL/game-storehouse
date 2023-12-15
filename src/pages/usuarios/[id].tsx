@@ -9,6 +9,7 @@ import gameValidator from '@/validators/gameValidator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReactInputMask from 'react-input-mask';
+import withAuth from '@/components/Hoc';
 
 const FormAlterUsuarios = () => {
 
@@ -153,4 +154,4 @@ const FormAlterUsuarios = () => {
     )
 }
 
-export default FormAlterUsuarios
+export default withAuth(FormAlterUsuarios)

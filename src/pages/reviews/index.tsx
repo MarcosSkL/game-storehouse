@@ -5,6 +5,7 @@ import { AiOutlineDelete, AiFillEdit } from 'react-icons/ai'
 import axios from 'axios'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import withAuth from '@/components/Hoc'
 
 const Index = () => {
 
@@ -117,4 +118,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default withAuth(Index)

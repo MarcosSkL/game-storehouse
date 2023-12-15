@@ -10,6 +10,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReactInputMask from 'react-input-mask';
 import Image from 'next/image';
+import withAuth from '@/components/Hoc';
 
 const FormAlterReviews = () => {
 
@@ -214,4 +215,4 @@ const FormAlterReviews = () => {
     )
 }
 
-export default FormAlterReviews
+export default withAuth(FormAlterReviews)

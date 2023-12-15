@@ -7,6 +7,7 @@ import { Button, Card, Col, Row } from 'react-bootstrap'
 import Link from 'next/link'
 import BoxForm from '@/components/BoxForm'
 import { AiOutlineDelete } from 'react-icons/ai'
+import withAuth from '@/components/Hoc'
 
 
 interface Jogos {
@@ -160,7 +161,7 @@ const Games = () => {
     )
 }
 
-export default Games
+export default withAuth(Games)
 
 export function backgroundNota(nota: number) {
     if (nota >= 80 && nota <= 99) {

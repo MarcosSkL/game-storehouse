@@ -4,7 +4,7 @@ import { IoSearch, IoMenu } from 'react-icons/io5'
 import Image from 'next/image'
 import { Offcanvas } from 'react-bootstrap'
 import Link from 'next/link'
-import ModalLogin from './ModalLogin'
+import User from './User'
 
 
 const Header = () => {
@@ -33,7 +33,7 @@ const Header = () => {
                             <p><Link href='/generos' className='no-underline text-lg font-semibold font-serif text-slate-200 text-current hover:text-gray-400'>Gêneros</Link></p>
                         </Offcanvas.Body>
                     </Offcanvas>
-                    <Link href={"/"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
+                    <Link href={"/home"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
                 </div>
                 <div className='flex items-center'>
 
@@ -46,7 +46,7 @@ const Header = () => {
                     />
                 </div>
                 <div className='me-5'>
-                    <ModalLogin />
+                    <User />
                 </div>
 
             </header>
