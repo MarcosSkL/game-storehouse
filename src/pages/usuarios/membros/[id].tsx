@@ -99,7 +99,7 @@ const Membros = () => {
                 </Col>
             </Row>
             <div className="mt-3 mx-4">
-                <Link href={'/'} className='btn btn-primary text-white'>Voltar</Link>
+                <Link href={'/home'} className='btn btn-primary text-white'>Voltar</Link>
             </div>
             <Footer />
         </>

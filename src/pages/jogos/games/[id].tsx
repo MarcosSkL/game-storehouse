@@ -152,7 +152,7 @@ const Games = () => {
                     </Row>
 
                     <div className="d-flex flex-column align-items-start pt-1">
-                        <Link href={'/'} className='btn btn-primary text-white'>Voltar</Link>
+                        <Link href={'/home'} className='btn btn-primary text-white'>Voltar</Link>
                     </div>
                 </div>
                 <Footer />
