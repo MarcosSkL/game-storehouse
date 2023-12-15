@@ -5,7 +5,7 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 import firebase from '../services/firebase';
 
 const withAuth = (WrappedComponent: any) => {
-    return (props: any) => {
+    const WithAuthComponent = (props: any) => {
         const router = useRouter();
         const auth = getAuth(firebase);
         const [userData, setUserData] = useState<any>(null);
@@ -39,7 +39,17 @@ const withAuth = (WrappedComponent: any) => {
         }
 
         return <WrappedComponent {...props} userData={userData} />;
+
     };
-};
+
+    // Função auxiliar para obter o nome de exibição de um componente
+    WithAuthComponent.displayName = `WithAuth(${getDisplayName(WrappedComponent)})`;
+    return WithAuthComponent;
+
+    function getDisplayName(WrappedComponent: any) {
+        return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+    }
+
+}
 
 export default withAuth;
