@@ -7,6 +7,7 @@ import { dataInRealtimeFaGoDB } from './DatabaseFaGo';
 import firebase from '../services/firebase';
 import LogoUp from '../../public/logoSKupScaler.png'
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Login = () => {
 
@@ -139,12 +140,12 @@ const Login = () => {
                            <div className='flex gap-1 justify-center mt-5'>
                               <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
                                  Nao tem uma conta?</p>
-                              <a
-                                 href="#!"
+                              <Link
+                                 href="/usuarios/form"
                                  className="text-red-700 hover:text-blue-500 mb-0 mt-2 pt-1 text-sm font-semibold"
                               >
                                  Criar conta
-                              </a>
+                              </Link>
                            </div>
 
                         </div>
