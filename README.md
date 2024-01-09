@@ -15,8 +15,7 @@
 - NextJS;
 - Tailwind CSS;
 - Bootstrap;
-- Firebase Realtime Database
-- Firebase OAUTH
+- Firebase
 
 ---
 
