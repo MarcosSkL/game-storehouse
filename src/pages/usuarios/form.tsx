@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Row, Form } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
@@ -7,9 +7,8 @@ import { AiOutlineCheck, AiOutlineArrowLeft } from 'react-icons/ai'
 import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
 import ReactInputMask from 'react-input-mask'
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import withAuth from '@/components/Hoc';
+
 
 const Formulario = () => {
 
@@ -38,12 +37,12 @@ const Formulario = () => {
         confirmarSenha: number
         foto: string
         preferenciagenero: string
-
+  
     }
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm<FormValues>();
     const senha = watch('senha');
-    const confirmarSenha = watch('confirmarSenha');
+    const confirmarSenha =  watch('confirmarSenha');
     
     function salvar(dados: any) {
 
