@@ -138,6 +138,7 @@ const Games = () => {
                                             <div className='flex justify-end pb-5'>
                                                 {item.data}
                                             </div>
+                                            <div className="border-t-4 border-gray-200 my-3"></div>
                                         </div>
                                     ))}
                                     <div className=''>

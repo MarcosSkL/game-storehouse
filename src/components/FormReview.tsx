@@ -125,7 +125,7 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
                             <Form.Label></Form.Label>
                             <Form.Control
                                 as="textarea"
-                                rows={5}
+                                rows={3}
                                 type="text"
                                 placeholder="Comentario"
                                 {...register('comentario', gameValidator.reviews.comentario)}

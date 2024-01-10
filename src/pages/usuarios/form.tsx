@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Row, Form } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
@@ -7,13 +7,13 @@ import { AiOutlineCheck, AiOutlineArrowLeft } from 'react-icons/ai'
 import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
 import ReactInputMask from 'react-input-mask'
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import withAuth from '@/components/Hoc';
+
 
 const Formulario = () => {
 
     const [generos, setGeneros] = useState([])
+ 
 
     useEffect(() => {
         getAll()
@@ -34,13 +34,16 @@ const Formulario = () => {
         nome: string
         email: string
         senha: number
+        confirmarSenha: number
         foto: string
         preferenciagenero: string
-
+  
     }
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
-
+    const { register, watch, handleSubmit, formState: { errors } } = useForm<FormValues>();
+    const senha = watch('senha');
+    const confirmarSenha =  watch('confirmarSenha');
+    
     function salvar(dados: any) {
 
         axios.post('/api/usuarios', dados)
@@ -51,8 +54,8 @@ const Formulario = () => {
 
     return (
         <>
-            <Header />
-            <div className='container'>
+
+            <div className='container mt-5'>
                 <Row>
                     <span className='text-5xl p-2 justify-center flex mb-5 rounded-full font-bold box-decoration-slice bg-gradient-to-r from-indigo-600 to-cyan-500 text-white px-3'>Cadastro</span>
                 </Row>
@@ -89,6 +92,24 @@ const Formulario = () => {
                                 {
                                     errors.senha &&
                                     <small className='text-red-700'>{errors.senha.message}</small>
+                                }
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="ConfirmarSenha">
+                                <Form.Label>Confirmar Senha</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Confirmar Senha"
+                                    mask="99999999"
+                                    as={ReactInputMask}
+                                    {...register('confirmarSenha', gameValidator.usuarios.confirmarSenha)}
+                                />
+                                {
+                                    errors.confirmarSenha &&
+                                    <small className='text-red-700'>{errors.confirmarSenha.message}</small>
+                                }
+                                {
+                                    senha !== confirmarSenha &&
+                                    <small className='text-red-700'>As senhas não correspondem!</small>
                                 }
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Foto">
@@ -143,4 +164,4 @@ const Formulario = () => {
     )
 }
 
-export default withAuth(Formulario)
+export default Formulario

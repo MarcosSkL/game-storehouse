@@ -1,4 +1,5 @@
 const cursoValidator = {
+    
     jogos: {
         titulo: {
             required: 'O Campo é Obrigatório',
@@ -70,6 +71,18 @@ const cursoValidator = {
                 message: "Quantidade minima de caracteres: 8"
             },
         },
+        confirmarSenha: {
+            required: 'O Campo é Obrigatório',
+            maxLength: {
+                value: 12,
+                message: "Quantidade maxima de caracteres: 12"
+            },
+            minLength: {
+                value: 8,
+                message: "Quantidade minima de caracteres: 8"
+            },
+        },
+
         foto: {
             maxLength: {
                 value: 200,
@@ -152,6 +165,7 @@ const cursoValidator = {
                 message: "Quantidade maxima de caracteres: 500"
             },
         },
+        
     },
     
 
