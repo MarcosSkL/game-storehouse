@@ -35,7 +35,10 @@ const Header = () => {
                     </Offcanvas>
                     <Link href={"/home"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
                 </div>
-                <div className='flex items-center'>
+                <div
+                    className='flex items-center'
+                    hidden
+                >
 
                     <IoSearch className="absolute text-slate-400 text-2xl sm:text-3xl" />
 

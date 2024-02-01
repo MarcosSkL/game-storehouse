@@ -138,7 +138,7 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
                         <Form className='text-white font-bold'>
                             <Form.Group className="mb-3" controlId="Usuario">
                                 <Form.Label>Usuario</Form.Label>
-                                <Form.Select
+                                <Form.Control
                                     placeholder="Usuario"
                                     {...register('usuario', gameValidator.reviews.usuario)}
                                     onChange={handleUserChange}
@@ -149,13 +149,8 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
                                         errors.usuario &&
                                         <small className='text-red-700'>{errors.usuario.message}</small>
                                     }
-                                    <option value="nome">Selecione</option>
-                                    {usuarios.map((item: any) => (
-                                        <option key={item.id} value={item.nome}>
-                                            {item.nome}
-                                        </option>
-                                    ))}
-                                </Form.Select>
+                                   
+                                </Form.Control>
                             </Form.Group>
 
 
@@ -180,7 +175,7 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
                                     type="text"
                                     placeholder="foto"
                                     {...register('foto', gameValidator.reviews.foto)}
-                                    hidden
+                                    
                                     readOnly
 
 

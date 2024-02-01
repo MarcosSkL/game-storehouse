@@ -118,7 +118,11 @@ const Formulario = () => {
 
                             <Form.Group className="mb-3" controlId="foto">
                                 <Form.Label>Foto</Form.Label>
-                                <Form.Control type="string" placeholder="foto" value={selectedUserImage} {...register('foto', gameValidator.reviews.foto)} />
+                                <Form.Control
+                                    type="string"
+                                    placeholder="foto"
+                                    value={selectedUserImage} {...register('foto', gameValidator.reviews.foto)}
+                                />
                                 {
                                     errors.foto &&
                                     <small className='text-red-700'>{errors.foto.message}</small>
@@ -126,7 +130,10 @@ const Formulario = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Jogo">
                                 <Form.Label>Jogo</Form.Label>
-                                <Form.Select placeholder="Jogo" {...register('jogo', gameValidator.reviews.jogo)}>
+                                <Form.Select
+                                    placeholder="Jogo"
+                                    {...register('jogo', gameValidator.reviews.jogo)}
+                                >
                                     {
                                         errors.jogo &&
                                         <small className='text-red-700'>{errors.jogo.message}</small>
@@ -144,7 +151,8 @@ const Formulario = () => {
                                     type="text"
                                     mask="99"
                                     as={ReactInputMask}
-                                    {...register('nota', gameValidator.reviews.nota)} />
+                                    {...register('nota', gameValidator.reviews.nota)}
+                                />
                                 {
                                     errors.nota &&
                                     <small className='text-red-700'>{errors.nota.message}</small>
@@ -152,7 +160,12 @@ const Formulario = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="Comentario">
                                 <Form.Label>Comentario</Form.Label>
-                                <Form.Control as="textarea" rows={3} type="text" placeholder="Comentario" {...register('comentario', gameValidator.reviews.comentario)} />
+                                <Form.Control
+                                    as="textarea"
+                                    rows={3} type="text"
+                                    placeholder="Comentario"
+                                    {...register('comentario', gameValidator.reviews.comentario)}
+                                />
                                 {
                                     errors.comentario &&
                                     <small className='text-red-700'>{errors.comentario.message}</small>
@@ -164,7 +177,8 @@ const Formulario = () => {
                                     type="date"
                                     placeholder="AAAA/MM/DD"
                                     defaultValue={currentDate}
-                                    {...register('data', gameValidator.reviews.data)} />
+                                    {...register('data', gameValidator.reviews.data)}
+                                />
                                 {
                                     errors.data &&
                                     <small className='text-red-700'>{errors.data.message}</small>
