@@ -59,16 +59,16 @@ const User = () => {
 
     return (
         <>
-            <div className='flex gap-3'>
-                <div className='flex gap-2 justify-end items-center text-sm text-white'>
-                    {userData.photoURL && <img src={userData.photoURL} alt="Foto do usuário" className='rounded-full h-14' />}
-                    <strong>{userData.displayName}</strong>
+            <div className='flex ms-[38px] gap-3'>
+                <div className='flex gap-2 justify-end items-center text-white'>
+                    {userData.photoURL && <img src={userData.photoURL} alt="Foto do usuário" className='rounded-full sm:h-14 h-10' />}
+                    <strong className='sm:text-sm text-[13px]'>{userData.displayName}</strong>
                 </div>
                 <div className='flex justify-end'>
                     <button
                         type="button"
                         onClick={handleLogout}
-                        className="rounded bg-red-500 my-3 p-1 text-sm uppercase text-white"
+                        className="rounded bg-red-500 my-3 sm:p-3 p-[3px] sm:text-sm text-[10px] uppercase text-white"
                     >
                         Sair
                     </button>

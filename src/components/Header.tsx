@@ -33,17 +33,17 @@ const Header = () => {
                             <p><Link href='/generos' className='no-underline text-lg font-semibold font-serif text-slate-200 text-current hover:text-gray-400'>Gêneros</Link></p>
                         </Offcanvas.Body>
                     </Offcanvas>
-                    <Link href={"/home"}><Image src={logo} height={100} width={100} alt='Logo Site' /> </Link>
+                    <Link href={"/home"}><Image className='-ms-5 sm:ms-0' src={logo} height={100} width={100} alt='Logo Site' /> </Link>
                 </div>
                 <div
-                    className='flex items-center'
-                    hidden
+                    className='items-center flex'
+                    
                 >
 
-                    <IoSearch className="absolute text-slate-400 text-2xl sm:text-3xl" />
+                    <IoSearch className="absolute text-slate-400 -ms-5 sm:ms-0 text-2xl sm:text-3xl" />
 
                     <input
-                        className="rounded-3xl bg-gray-200 outline-none py-1 px-4 text-xs sm:text-lg focus:px-7  focus: duration-500"
+                        className="rounded-3xl bg-gray-200 -ms-5 sm:ms-0 sm:py-1 sm:px-10 py-2 px-[0px] text-xs sm:text-lg"
                         type="text"
                         placeholder="Procurar"
                     />

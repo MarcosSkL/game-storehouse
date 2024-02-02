@@ -212,11 +212,11 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
                                 }
                             </Form.Group>
 
-                            <div className='flex gap-3 justify-center pb-5'>
+                            <div className='flex gap-3 justify-center'>
                                 <button
                                     onClick={handleSubmit(salvar)}
                                     type="submit"
-                                    className="bg-blue-500 text-white active:bg-blue-800 font-bold uppercase text-sm px-6 py-3 mt-2 rounded-lg shadow-black shadow-2xl hover:bg-blue-600 ease-linear transition-all duration-150"
+                                    className="bg-blue-500 text-white active:bg-blue-800 font-bold uppercase text-sm px-6 py-1 -mt-20 rounded-lg shadow-black shadow-2xl hover:bg-blue-600 ease-linear transition-all duration-150"
                                 >
                                     <span className='flex items-center gap-2'>
                                         <AiOutlineCheck />
