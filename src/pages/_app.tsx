@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserProvider } from '../context/userProviderr';
+import { UserProvider } from '../context/userProvider';
 import '@/styles/globals.css'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import firebase from '../services/firebase';
-import { UserContext } from '../context/userProviderr'; // ajuste o caminho conforme necessário
+import { UserContext } from '../context/userProvider'; // ajuste o caminho conforme necessário
 
 
 const User = () => {
