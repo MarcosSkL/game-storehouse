@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import firebase from '../services/firebase';
+import { UserContext } from '../context/userProvider'; // ajuste o caminho conforme necessário
 
 
 const User = () => {
 
     const router = useRouter();
     const auth = getAuth(firebase);
-
-    const [userData, setUserData] = useState<any>(null);
+    const { dispatch } = useContext(UserContext);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -22,7 +22,7 @@ const User = () => {
                 onValue(userRef, (snapshot) => {
                     const data = snapshot.val();
                     if (data) {
-                        setUserData(data);
+                        dispatch({ type: 'SET_USER_DATA', payload: data });
                     } else {
                         console.log('informação não encontrada!');
                     }
@@ -43,28 +43,32 @@ const User = () => {
             await signOut(auth)
                 .then(() => {
                     console.log('Logout realizado com sucesso');
+                    dispatch({ type: 'SET_USER_DATA', payload: null });
                 })
         } catch (error) {
             console.error('Erro ao fazer logout:', error);
         }
     };
 
+    const { state } = useContext(UserContext);
+    const userData = state.userData;
+
     if (!userData) {
-        return <p>Carregando...</p>;
+        return <p>Carregando..</p>;
     }
 
     return (
         <>
-            <div className='flex gap-3'>
-                <div className='flex gap-2 justify-end items-center text-sm text-white'>
-                    {userData.photoURL && <img src={userData.photoURL} alt="Foto do usuário" className='rounded-full h-14' />}
-                    <strong>{userData.displayName}</strong>
+            <div className='flex ms-[38px] gap-3'>
+                <div className='flex gap-2 justify-end items-center text-white'>
+                    {userData.photoURL && <img src={userData.photoURL} alt="Foto do usuário" className='rounded-full sm:h-14 h-10' />}
+                    <strong className='sm:text-sm text-[13px]'>{userData.displayName}</strong>
                 </div>
                 <div className='flex justify-end'>
                     <button
                         type="button"
                         onClick={handleLogout}
-                        className="rounded bg-red-500 my-3 p-1 text-sm uppercase text-white"
+                        className="rounded bg-red-500 my-3 sm:p-3 p-[3px] sm:text-sm text-[10px] uppercase text-white"
                     >
                         Sair
                     </button>
