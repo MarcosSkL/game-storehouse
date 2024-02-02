@@ -121,7 +121,7 @@ const Games = () => {
                                     {reviews.filter(item => item.jogo === jogos?.titulo).map((item: any, index: number) => (
                                         <div key={index}>
                                             <div className='flex items-baseline gap-3'>
-                                                <img src={item.foto} height={100} width={100} alt={item.usuario} />
+                                                <img className='' src={item.foto} height={100} width={100} alt={item.usuario} />
                                                 <p className='text-xl font-bold'>{item.usuario}</p>
                                             </div>
                                             <div className='flex gap-2 text-xl'>

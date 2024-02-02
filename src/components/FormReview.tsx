@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
+import { UserContext } from '../context/userProvider';
 import { Button, Card, Col, Row, Table, Form } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
@@ -8,6 +9,7 @@ import axios from 'axios';
 import gameValidator from '@/validators/gameValidator';
 import ReactInputMask from 'react-input-mask';
 import Image from 'next/image';
+import User from './User';
 
 interface FormValues {
     id: string;
@@ -43,23 +45,24 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([])
     const [jogos, setJogos] = useState<Jogos[]>([])
-    const [selectedUserImage, setSelectedUserImage] = useState('');
+    const { state } = useContext(UserContext);
+    const userData = state.userData;
 
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm<FormValues>();
 
     const currentDate = new Date().toISOString().slice(0, 10);
 
+    console.log(state)
 
 
     const fetchData = async () => {
-      
-        try {
-            const selectImg = await selectedUserImage; // Função que busca a imagem do usuário
-            const jogoTitle = await jogos.find(item => item.id === gameID)?.titulo || ''; // Função que busca o título do jogo
 
-            setValue('foto', selectImg);
-            setValue('jogo', jogoTitle);  
-            
+        try {
+            const jogoTitle = await jogos.find(item => item.id === gameID)?.titulo || ''; // Função que busca o título do jogo
+            const userLogin = userData ? userData.displayName : '';
+            setValue('jogo', jogoTitle);
+            setValue('usuario', userLogin);
+
         } catch (error) {
             console.error('Erro ao buscar dados:', error);
         }
@@ -71,15 +74,6 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
     const router = useRouter() // Crie uma instância do useRouter
     const { id } = router.query // Extraia o id da query
 
-    const handleUserChange = (event: any) => {
-        const selectedUserName = event.target.value;
-        const selectedUser = usuarios.find((item: any) => item.nome === selectedUserName);
-        if (selectedUser) {
-            setSelectedUserImage(selectedUser.foto);
-        } else {
-            setSelectedUserImage('');
-        }
-    };
 
     useEffect(() => {
         if (id) {
@@ -117,44 +111,8 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
 
                 <Row>
                     <Col>
-                        <div className='flex justify-center'>
-                            {selectedUserImage && <img src={selectedUserImage} height={100} width={100} alt="Selected user" />}
-                        </div>
-
-                        <Form.Group className="mb-3" controlId="Comentario">
-                            <Form.Label></Form.Label>
-                            <Form.Control
-                                as="textarea"
-                                rows={3}
-                                type="text"
-                                placeholder="Comentario"
-                                {...register('comentario', gameValidator.reviews.comentario)}
-                            />
-                            {
-                                errors.comentario &&
-                                <small className='text-red-700'>{errors.comentario.message}</small>
-                            }
-                        </Form.Group>
                         <Form className='text-white font-bold'>
-                            <Form.Group className="mb-3" controlId="Usuario">
-                                <Form.Label>Usuario</Form.Label>
-                                <Form.Control
-                                    placeholder="Usuario"
-                                    {...register('usuario', gameValidator.reviews.usuario)}
-                                    onChange={handleUserChange}
-
-
-                                >
-                                    {
-                                        errors.usuario &&
-                                        <small className='text-red-700'>{errors.usuario.message}</small>
-                                    }
-                                   
-                                </Form.Control>
-                            </Form.Group>
-
-
-                            <Form.Group className="mb-3" controlId="Nota">
+                        <Form.Group className="mb-3" controlId="Nota">
                                 <Form.Label>Nota</Form.Label>
                                 <Form.Control
                                     type="text"
@@ -168,14 +126,50 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
                                     <small className='text-red-700'>{errors.nota.message}</small>
                                 }
                             </Form.Group>
+                        <Form.Group className="mb-3" controlId="Comentario">
+                            <Form.Label>Comentario</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={3}
+                                type="text"
+                                placeholder="Comentario"
+                                {...register('comentario', gameValidator.reviews.comentario)}
+                            />
+                            {
+                                errors.comentario &&
+                                <small className='text-red-700'>{errors.comentario.message}</small>
+                            }
+                        </Form.Group>
+                        
+                            <Form.Group className="mb-3" controlId="Usuario">
+                                <Form.Label></Form.Label>
+                                <Form.Control
+                                    placeholder="Usuario"
+                                    {...register('usuario', gameValidator.reviews.usuario)}
+                                    defaultValue={userData ? userData.displayName : ''}
+                                    autoFocus
+                                    hidden
+
+                                >
+                                    {
+                                        errors.usuario &&
+                                        <small className='text-red-700'>{errors.usuario.message}</small>
+                                    }
+
+                                </Form.Control>
+                            </Form.Group>
+
+
+                            
                             <Form.Group className="mb-3" controlId="foto">
                                 <Form.Label></Form.Label>
                                 <Form.Control
-                                    autoFocus
                                     type="text"
                                     placeholder="foto"
                                     {...register('foto', gameValidator.reviews.foto)}
-                                    
+                                    defaultValue={userData ? userData.photoURL : ''}
+                                    autoFocus
+                                    hidden
                                     readOnly
 
 
@@ -185,6 +179,7 @@ const FormReview: React.FC<ModalFormReviewProps> = ({ onSave, gameID }) => {
                                     <small className='text-red-700'>{errors.foto.message}</small>
                                 }
                             </Form.Group>
+
                             <Form.Group className="mb-3" controlId="Jogo">
                                 <Form.Label></Form.Label>
                                 <Form.Control
