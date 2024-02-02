@@ -54,7 +54,7 @@ const User = () => {
     const userData = state.userData;
 
     if (!userData) {
-        return <p>Carregando...</p>;
+        return <p>Carregando..</p>;
     }
 
     return (
