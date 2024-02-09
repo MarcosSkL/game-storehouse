@@ -16,6 +16,7 @@
 - Tailwind CSS;
 - Bootstrap;
 - Firebase
+- Firebase OAUTH
 
 ---
 
