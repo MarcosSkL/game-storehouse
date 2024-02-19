@@ -36,7 +36,7 @@ const Header = () => {
                     <Link href={"/home"}><Image className='-ms-5 sm:ms-0' src={logo} height={100} width={100} alt='Logo Site' /> </Link>
                 </div>
                 <div
-                    className='items-center flex'
+                    className='items-center hidden'
                     
                 >
 

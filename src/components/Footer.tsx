@@ -11,17 +11,17 @@ const Footer = () => {
         <div className='flex justify-between items-center'>
           <Image src={logo} width={90} height={90} alt='Logo' />
           <span className='text-current hover:text-white pb-8 '>Desenvolvedores </span>
-          <span className='text-current hover:text-white pb-8 '>©2023 SK Games</span>
+          <span className='text-current hover:text-white pb-8 '>©2024 SKL Software</span>
         </div>
 
         <div className='flex gap-5 justify-center'>
-          <span className='flex gap-1 items-center'><Link className='no-underline font-bold bg-clip-text text-transparent hover:text-white bg-gradient-to-r from-slate-200 to-blue-400' target='_blank' rel="noreferrer" href="https://github.com/MarcosSkL">Marcos Bezerra 211142900-26</Link>
+          <span className='flex gap-1 items-center'><Link className='no-underline font-bold bg-clip-text text-transparent hover:text-white bg-gradient-to-r from-slate-200 to-blue-400' target='_blank' rel="noreferrer" href="https://github.com/MarcosSkL">Marcos Bezerra</Link>
             <Link className='text-gray-400 text-current hover:text-white' target='_blank' href='https://www.instagram.com/markin36/'><FaInstagram className='w-4 h-4 cursor-pointer' /></Link>
             <Link className='text-gray-400 text-current hover:text-white' target='_blank' href='https://github.com/MarcosSkL'><FaGithub className='w-4 h-4 cursor-pointer' /></Link></span>
         </div>
 
         <div className='flex gap-3 justify-stretch'>
-          <span className='mb-2 md:mb-1'>©2023 - Todos os direitos reservados.</span>
+          <span className='mb-2 md:mb-1'>©2024 - Todos os direitos reservados.</span>
           <Link href={'#'} className='no-underline text-current hover:text-white'>Privacidade</Link>
           <Link href={'#'} className='no-underline text-current hover:text-white'>Ajuda</Link>
         </div>

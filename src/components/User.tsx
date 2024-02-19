@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getDatabase, ref, onValue } from 'firebase/database';
@@ -59,7 +59,7 @@ const User = () => {
 
     return (
         <>
-            <div className='flex ms-[38px] gap-3'>
+            <div className='flex ms-[180px] gap-3'>
                 <div className='flex gap-2 justify-end items-center text-white'>
                     {userData.photoURL && <img src={userData.photoURL} alt="Foto do usuário" className='rounded-full sm:h-14 h-10' />}
                     <strong className='sm:text-sm text-[13px]'>{userData.displayName}</strong>
